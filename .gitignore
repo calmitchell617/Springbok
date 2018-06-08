@@ -1,0 +1,7 @@
+# ignoring csv files
+*.csv
+*.pages
+
+.python-version
+
+settings.json

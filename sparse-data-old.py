@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
 from zipline.pipeline.data import USEquityPricing, Column, DataSet
@@ -20,12 +14,6 @@ import numpy as np
 import datetime as dt
 import pandas as pd
 from zipline.utils.run_algo import load_extensions
-
-
-# In[2]:
-
-
-# Loading our custom data bundle
 
 load_extensions(
     default=True,
@@ -74,32 +62,8 @@ for ticker in pricing_assets:
 assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in tickers], as_of_date=None)
 sids = pd.Int64Index([asset.sid for asset in assets])
 
-
-# In[4]:
-
-
-# Setting the dates we will be backtesting on
-
-"""trading_calendar = get_calendar('NYSE') # Make sure to set your trading calendar!
-
-for root, dirs, files in os.walk(fundamentals_directory):
-    for file in files:
-        data = pd.read_csv(fundamentals_directory + file, encoding='latin1', index_col=0)
-        dates = data.index.tolist()
-        break
-        
-
-        
-datestamps = get_calendar('NYSE').sessions_in_range(start_date, end_date).tolist()
-
-print(datestamps)
-
-for date in dates:
-    newer_date = pd.Timestamp(date, tz='utc')
-    datestamps.append(newer_date)"""
-
-
 # dates = revenue_df.index.tolist() # we need to make a list of timestamps for every day that exists in our fundamental data
+
 datestamps = []
 
 for date in dates:
