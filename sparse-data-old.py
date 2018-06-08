@@ -10,7 +10,7 @@ from zipline.pipeline.factors import SimpleMovingAverage
 from zipline.api import order_target, record, symbol
 
 import os
-import numpy as np
+
 import datetime as dt
 import pandas as pd
 from zipline.utils.run_algo import load_extensions
@@ -23,12 +23,6 @@ load_extensions(
 )
 
 bundle_data = bundles.load('sharadar-pricing-trimmed')
-
-
-# In[3]:
-
-
-# Populating our ticker universe
 
 fundamentals_directory = '/Users/calmitchell/s/ziplineData/final_fundamentals/'
 pricing_directory = '/Users/calmitchell/s/ziplineData/sharadarPricingData/daily/'

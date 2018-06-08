@@ -1,3 +1,5 @@
+This code is dedicated to using pricing, and fundamental data from Quandl within Zipline.
+
 Setup instructions:
 
 1:  Make sure your environment is Python 3.5, and install the proper dependencies. I used Pyenv to accomplish this goal.
