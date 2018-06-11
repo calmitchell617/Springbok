@@ -148,11 +148,12 @@ def analyze(context, perf):
     """
     Helper function that runs once the backtest is finished
     """
+    perf.to_csv('backtest_outputs/backtest_run_on_{}.csv'.format(str(dt.datetime.now())))
+
     fig = plt.figure()
     ax1 = fig.add_subplot(211)
     perf.portfolio_value.plot(ax=ax1)
     ax1.set_ylabel('portfolio value in $')
-    perf_trans = perf.ix[[t != [] for t in perf.transactions]]
     plt.legend(loc=0)
     plt.show()
 

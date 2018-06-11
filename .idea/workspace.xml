@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sparse-data-old.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparse-data-old.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +17,11 @@
       <file leaf-file-name="sparse-data-old.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sparse-data-old.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+            <state relative-caret-position="1477">
+              <caret line="156" column="21" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -259,7 +262,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="878" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17758985" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
@@ -554,8 +556,11 @@
     <entry file="file://$PROJECT_DIR$/working-small-universe-full-data.py" />
     <entry file="file://$PROJECT_DIR$/sparse-data-old.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        <state relative-caret-position="1477">
+          <caret line="156" column="21" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
