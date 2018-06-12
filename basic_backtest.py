@@ -22,10 +22,10 @@ load_extensions(
     environ=os.environ,
 )
 
-bundle_data = bundles.load('sharadar-pricing-trimmed')
+bundle_data = bundles.load('sharadar-pricing')
 
-fundamentals_directory = '/Users/calmitchell/s/ziplineData/final_fundamentals/'
-pricing_directory = '/Users/calmitchell/s/ziplineData/sharadarPricingData/daily/'
+fundamentals_directory = '/Users/calmitchell/s/springbok-shared/processed_data/fundamentals/'
+pricing_directory = '/Users/calmitchell/s/springbok-shared/processed_data/pricing/daily/'
 
 pricing_assets = {}
 fundamental_assets = {}
@@ -142,13 +142,13 @@ def handle_data(context, data):
     """
     for asset in context.todays_assets:
         order(symbol(asset), 10)
-    record(assets=context.todays_assets)
+
 
 def analyze(context, perf):
     """
     Helper function that runs once the backtest is finished
     """
-    perf.to_csv('backtest_outputs/backtest_run_on_{}.csv'.format(str(dt.datetime.now())))
+    perf.to_csv('backtest_outputs/backtest.csv'.format(str(dt.datetime.now())))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(211)
@@ -165,13 +165,13 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2015-01-05', tz='utc')
-end = pd.Timestamp('2018-01-07', tz='utc')
+start = pd.Timestamp('2018-01-05', tz='utc')
+end = pd.Timestamp('2018-05-07', tz='utc')
 
 print('made it to run algorithm')
 
 run_algorithm(
-    bundle='sharadar-pricing-trimmed',
+    bundle='sharadar-pricing',
     before_trading_start=before_trading_start, 
     start = start, 
     end=end, 
@@ -181,4 +181,3 @@ run_algorithm(
     handle_data=handle_data,
     loaders=loaders
 )
-
