@@ -57,5 +57,24 @@ Setup instructions:
 
     Run fundamentals_prep.py, this file puts the data for each alpha factor into a seperate folder.
 
-5: Test to see if the thing works:
+5: Time to ingest the pricing data as a bundle:
+    Find your zipline folder:
+    /Users/YOUR-USER-NAME/.zipline
+
+    You will have to modify the extension.py folder within that directory
+
+    Change the start_session variable to match the date which your pricing data
+    starts on
+
+    Change the end_session variable to match the date that your pricing data
+    ends on.
+
+    Change the first parameter in the register() function to: ' sharadar-pricing '
+    Make sure the first parameter of the csvdir_equites() function is ' ['daily'] '
+    Make the second parameter of the csvdir_equites() function the full directory of your pricing folder...
+    For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ '
+
+    Ingest the data by running zipline ingest -b 'sharadar-pricing'
+
+6: Test to see if the thing works:
     Run basic_backtest.py, if it works, a CSV file should be written to the backtest_outputs folder. Hooray!
