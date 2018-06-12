@@ -42,8 +42,7 @@ Setup instructions:
 
     Zipline should install, and we can now use this environment to do all kinds of fun stuff
 
-3:  Get the skeleton of our project by git cloning ' https://github.com/calmitchell617/springbok-shared.git '
-    Download pricing and fundamental data from Quandl. Put these 2 files in the data_downloads folder.
+3:  Download pricing and fundamental data from Quandl. Put these 2 files in the data_downloads folder.
     Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
     Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
 
