@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="" />
+    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/mkdirs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/springbok-shared.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/springbok-shared.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,11 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
+            <state relative-caret-position="245">
+              <caret line="178" lean-forward="true" selection-start-line="178" selection-end-line="178" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mkdirs.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mkdirs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -66,6 +79,7 @@
         <option value="$PROJECT_DIR$/drop_non_arq.py" />
         <option value="$PROJECT_DIR$/earnings_growth.py" />
         <option value="$PROJECT_DIR$/basic_backtest.py" />
+        <option value="$PROJECT_DIR$/mkdirs.py" />
       </list>
     </option>
   </component>
@@ -75,9 +89,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -91,6 +106,22 @@
             <path>
               <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
               <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
+              <item name="io_files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
+              <item name="processed_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
+              <item name="processed_data" type="462c0819:PsiDirectoryNode" />
+              <item name="pricing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -263,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528920581716</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth.">
+      <created>1528920614735</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1528920614735</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -276,13 +314,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1761804" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1761804" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.41521198" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32917705" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.34828496" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -316,7 +355,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$USER_HOME$/.pyenv/versions/3.5.5/lib/python3.5/site-packages/zipline/utils/run_algo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -521,8 +559,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
+        <state relative-caret-position="245">
+          <caret line="178" lean-forward="true" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mkdirs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
         </state>
       </provider>
     </entry>
