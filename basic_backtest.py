@@ -22,10 +22,10 @@ load_extensions(
     environ=os.environ,
 )
 
-bundle_data = bundles.load('sharadar-pricing-trimmed')
+bundle_data = bundles.load('sharadar-pricing')
 
-fundamentals_directory = '/Users/calmitchell/s/ziplineData/final_fundamentals/'
-pricing_directory = '/Users/calmitchell/s/ziplineData/sharadarPricingData/daily/'
+fundamentals_directory = '/Users/calmitchell/s/springbok-shared/processed_data/fundamentals/'
+pricing_directory = '/Users/calmitchell/s/springbok-shared/processed_data/pricing/daily/'
 
 pricing_assets = {}
 fundamental_assets = {}
@@ -72,14 +72,22 @@ for date in dates:
 # logic will live
 
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
-    pe = Column(dtype=float)
+    pe1 = Column(dtype=float)
+    eg = Column(dtype=float)
+    de = Column(dtype=float)
 
-pe_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe'), usecols=tickers)
+pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
+eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
+de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
 
-pe_frame, pe_frame.index, pe_frame.columns  = pe_df, datestamps, sids
+pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
+eg_frame, eg_frame.index, eg_frame.columns  = eg_df, datestamps, sids
+de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
 
 loaders = { # Every column of data needs its own loader
-    MyDataSet.pe: DataFrameLoader(MyDataSet.pe, pe_frame),  
+    MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
+    MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
+    MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
 }
 
 pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
@@ -87,9 +95,19 @@ pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricin
     bundle_data.adjustment_reader,
 )
 
-pe_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.pe],
-    window_length=3,
+pe1_factor = SimpleMovingAverage( # custom factor created from fundamental data
+    inputs=[MyDataSet.pe1],
+    window_length=1,
+)
+
+eg_factor = SimpleMovingAverage( # custom factor created from fundamental data
+    inputs=[MyDataSet.eg],
+    window_length=1,
+)
+
+de_factor = SimpleMovingAverage( # custom factor created from fundamental data
+    inputs=[MyDataSet.de],
+    window_length=1,
 )
 
 def make_pipeline():
@@ -100,9 +118,11 @@ def make_pipeline():
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
-            'pe': MyDataSet.pe.latest,
+            'pe1': MyDataSet.pe1.latest,
+            'eg': MyDataSet.eg.latest,
+            'de': MyDataSet.eg.latest,
         },
-        screen = pe_factor.bottom(10) # screening our everything that isn't a top 10 stock in our custom factor
+        screen = pe1_factor.bottom(10) # screening our everything that isn't a top 10 stock in our custom factor
     )
 
 
@@ -134,7 +154,6 @@ def before_trading_start(context, data):
         item_str = str(item)
         ticker_start = item_str.index('[')
         context.todays_assets.append(item_str[ticker_start + 1:-2])
-
     
 def handle_data(context, data):
     """
@@ -142,13 +161,13 @@ def handle_data(context, data):
     """
     for asset in context.todays_assets:
         order(symbol(asset), 10)
-    record(assets=context.todays_assets)
+
 
 def analyze(context, perf):
     """
     Helper function that runs once the backtest is finished
     """
-    perf.to_csv('backtest_outputs/backtest_run_on_{}.csv'.format(str(dt.datetime.now())))
+    perf.to_csv('backtest_outputs/backtest_on_{}.csv'.format(str(dt.datetime.now())))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(211)
@@ -165,13 +184,13 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2015-01-05', tz='utc')
-end = pd.Timestamp('2018-01-07', tz='utc')
+start = pd.Timestamp('2018-01-05', tz='utc')
+end = pd.Timestamp('2018-05-07', tz='utc')
 
 print('made it to run algorithm')
 
 run_algorithm(
-    bundle='sharadar-pricing-trimmed',
+    bundle='sharadar-pricing',
     before_trading_start=before_trading_start, 
     start = start, 
     end=end, 
@@ -181,4 +200,3 @@ run_algorithm(
     handle_data=handle_data,
     loaders=loaders
 )
-

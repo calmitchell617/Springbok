@@ -19,7 +19,7 @@ for root, dirs, files in os.walk(downloads_directory): # Lets get all of our tic
             for ticker in tickers:
                 with open('{}/{}.csv'.format(processed_directory, ticker), 'w') as processed_file:
                     writer = csv.writer(processed_file)
-                    writer.writerow(['date', 'open', 'high', 'low', 'close', 'volume', 'dividend', 'split'])
+                    writer.writerow(['date', 'open', 'high', 'low', 'close', 'volume'])
 
             iterator = pricing_df.iterrows()
             next(iterator)
@@ -28,13 +28,12 @@ for root, dirs, files in os.walk(downloads_directory): # Lets get all of our tic
                     ticker_writer = csv.writer(ticker_file)
                     ticker_writer.writerow(
                         [
-                            pd.Timestamp(row['date'], tz='UTC'),
+                            row['date'],
                             row['open'],
                             row['high'],
                             row['low'],
                             row['close'],
-                            row['volume'],
-                            row['dividends'],
-                            1.0,
+                            row['volume']
+
                         ]
                     )

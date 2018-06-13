@@ -2,7 +2,7 @@ import os
 import csv
 
 downloads_directory = 'data_downloads'
-processed_directory = 'processed_data/fundamentals'
+processed_directory = 'io_files'
 
 rows_to_drop = []
 
