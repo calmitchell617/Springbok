@@ -4,7 +4,7 @@ import pandas as pd
 from zipline.utils.calendars import get_calendar
 
 preprocessed_directory = 'processed_data/pricing/preprocessed'
-last_directory = 'processed_data/pricing/done'
+last_directory = 'processed_data/pricing/daily'
 
 tickers_list = []
 

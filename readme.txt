@@ -1,10 +1,19 @@
 This code is dedicated to using pricing, and fundamental data from Quandl within Zipline.
 
+Note: Everything that is quoted by single quotemarks... ' like this ' ... is a command to run in the command line.
+
 Setup instructions:
 
 1:  Make sure your environment is Python 3.5, and install the proper dependencies. I used Pyenv to accomplish this goal.
     Tutorial for setting up Pyenv on macOS:
     https://medium.com/@pimterry/setting-up-pyenv-on-os-x-with-homebrew-56c7541fd331
+
+    Here is the summary of the commands you should run:
+
+    If you already have homebrew installed (which you should)
+    run: ' CFLAGS=“-I$(xcrun — show-sdk-path)/usr/include” '
+    run: ' brew install pyenv '
+    run: ' brew install readline '
 
     command line:
     Use pyenv to install python 3.5 ‘ pyenv install 3.5.5 ‘
@@ -33,12 +42,39 @@ Setup instructions:
 
     Zipline should install, and we can now use this environment to do all kinds of fun stuff
 
-3:  Get the skeleton of our project by git cloning ' https://github.com/calmitchell617/springbok-shared.git '
-    Download pricing and fundamental data from Quandl. Put these 2 files in the data_downloads folder.
+3:  Download pricing and fundamental data from Quandl. Put these 2 files in the data_downloads folder.
     Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
     Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
 
-    Run bundle_prep.py to process the pricing data into a the correct format. The data will populate in the
-    processed_data folder. (This step will take a little while. Should have written it in Go).
+4: Time to process the data!
 
-AAMC is the first problem child with missing data. 
+    Run bundle_prep.py to process the pricing data into seperate OHLCV files for each ticker.
+    (This step will take a little while. Should have written it in Go).
+
+    Run reindex.py to finish processing pricing data
+
+    Run drop_non_arq.py, this file strips away a lot of fluff that we won't use from the fundamental data.
+
+    Run fundamentals_prep.py, this file puts the data for each alpha factor into a seperate folder.
+
+5: Time to ingest the pricing data as a bundle:
+    Find your zipline folder:
+    /Users/YOUR-USER-NAME/.zipline
+
+    You will have to modify the extension.py folder within that directory
+
+    Change the start_session variable to match the date which your pricing data
+    starts on
+
+    Change the end_session variable to match the date that your pricing data
+    ends on.
+
+    Change the first parameter in the register() function to: ' sharadar-pricing '
+    Make sure the first parameter of the csvdir_equites() function is ' ['daily'] '
+    Make the second parameter of the csvdir_equites() function the full directory of your pricing folder...
+    For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ '
+
+    Ingest the data by running zipline ingest -b 'sharadar-pricing'
+
+6: Test to see if the thing works:
+    Run basic_backtest.py, if it works, a CSV file should be written to the backtest_outputs folder. Hooray!
