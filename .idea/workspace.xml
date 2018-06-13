@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/earnings_growth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bundle_prep.py" beforeDir="false" afterPath="$PROJECT_DIR$/bundle_prep.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataframe_exps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/drop_non_arq.py" beforeDir="false" afterPath="$PROJECT_DIR$/drop_non_arq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundamentals_prep_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundamentals_prep.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparse-data-old.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_backtest.py" afterDir="false" />
-    </list>
+    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +14,8 @@
       <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="175" column="21" lean-forward="true" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
+            <state relative-caret-position="330">
+              <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -264,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528726470807</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth.">
+      <created>1528920581716</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1528920581716</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -278,13 +277,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1761804" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41521198" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917705" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41521198" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32917705" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -309,7 +307,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="Morning check-in, everything is working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Morning check-in, everything is working" />
+    <MESSAGE value="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -500,6 +499,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -519,8 +521,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="175" column="21" lean-forward="true" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
+        <state relative-caret-position="330">
+          <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
         </state>
       </provider>
     </entry>
