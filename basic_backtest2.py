@@ -1,5 +1,5 @@
 from zipline.data import bundles
-from zipline.pipeline import Pipeline
+from zipline.pipeline import Pipeline, CustomFactor
 from zipline.pipeline.data import USEquityPricing, Column, DataSet
 from zipline.pipeline.engine import SimplePipelineEngine
 from zipline.pipeline.filters import StaticAssets
@@ -56,7 +56,7 @@ for ticker in pricing_assets:
 assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in tickers], as_of_date=None)
 sids = pd.Int64Index([asset.sid for asset in assets])
 
-# dates = revenue_df.index.tolist() # we need to make a list of timestamps for every day that exists in our fundamental data
+# dates = capenue_df.index.tolist() # we need to make a list of timestamps for every day that exists in our fundamental data
 
 datestamps = []
 
@@ -72,24 +72,15 @@ for date in dates:
 # logic will live
 
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
-    pe1 = Column(dtype=float)
-    eg = Column(dtype=float)
-    de = Column(dtype=float)
+    cap = Column(dtype=float)
 
-pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
-eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
-de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
 
-print(pe1_df['AAL'])
+cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
 
-pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
-eg_frame, eg_frame.index, eg_frame.columns  = eg_df, datestamps, sids
-de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
+cap_frame, cap_frame.index, cap_frame.columns  = cap_df, datestamps, sids
 
 loaders = { # Every column of data needs its own loader
-    MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
-    MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
-    MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
+    MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
 }
 
 pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
@@ -97,34 +88,24 @@ pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricin
     bundle_data.adjustment_reader,
 )
 
-pe1_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.pe1],
-    window_length=1,
-)
+class CapFactor(CustomFactor):
+    inputs = [MyDataSet.cap]
+    window_length = 1
 
-eg_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.eg],
-    window_length=1,
-)
-
-de_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.de],
-    window_length=1,
-)
+    def compute(self, today, assets, out, cap):
+        out[:] = cap[0]
 
 def make_pipeline():
     """
     Data from a pipeline is available to your algorithm in before_trading_start(),
     and handle_data(), as long as you attach the pipeline in initialize().
     """
+    cap_factor = CapFactor()
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
-            'pe1': MyDataSet.pe1.latest,
-            'eg': MyDataSet.eg.latest,
-            'de': MyDataSet.de.latest,
+            'cap': cap_factor.latest
         },
-        screen = pe1_factor.bottom(10) # screening our everything that isn't a top 10 stock in our custom factor
     )
 
 
@@ -151,7 +132,7 @@ def before_trading_start(context, data):
     function is run every day before market opens
     """
     context.output = pipeline_output('data_pipe')
-    print(context.output)
+    context.output.to_csv('backtest_outputs/contextoutput.csv')
 
 def handle_data(context, data):
     """
@@ -164,9 +145,6 @@ def handle_data(context, data):
         if asset not in context.output.index: # remove key from portfolio
             keys_to_remove.append(asset)
             order(asset, -portfolio[asset]['shares'])
-            print('sold {}'.format(asset))
-        else:
-            print('held onto {}'.format(asset))
 
     for key in keys_to_remove:
         portfolio.pop(key)
@@ -174,13 +152,9 @@ def handle_data(context, data):
     for asset in context.output.index:
         if asset not in portfolio:
             order(asset, 10)
-            portfolio[asset] = {'pe1': context.output.loc[asset]['pe1'], 'shares': 10}
-            print('bought {}'.format(asset))
+            portfolio[asset] = {'shares': 10}
 
-    print(portfolio)
-
-
-    record(portfolio=str(portfolio))
+    record(portfolio=str([(key, portfolio[key]['shares']) for key in portfolio.keys()]))
 
 
 def analyze(context, perf):
@@ -204,8 +178,8 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2013-03-31', tz='utc')
-end = pd.Timestamp('2013-04-5', tz='utc')
+start = pd.Timestamp('2018-01-31', tz='utc')
+end = pd.Timestamp('2018-02-01', tz='utc')
 
 print('made it to run algorithm')
 

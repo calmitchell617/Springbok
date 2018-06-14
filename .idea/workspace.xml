@@ -14,11 +14,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="202">
+              <caret line="104" selection-start-line="104" selection-end-line="107" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basic_backtest2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="103" column="20" lean-forward="true" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fundamentals_prep.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fundamentals_prep.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="123" column="35" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -56,12 +80,26 @@
       <find>print</find>
       <find>df</find>
       <find>tickers</find>
-      <find>aapl</find>
       <find>index</find>
       <find>load</find>
       <find>iter</find>
       <find>loc</find>
       <find>portfolio</find>
+      <find>ions</find>
+      <find>IONS</find>
+      <find>CAG</find>
+      <find>KNL</find>
+      <find>NRTH</find>
+      <find>OGEN</find>
+      <find>context</find>
+      <find>held onto</find>
+      <find>held</find>
+      <find>aapl</find>
+      <find>sold</find>
+      <find>pe1</find>
+      <find>Pe1</find>
+      <find>rev</find>
+      <find>Rev</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -89,6 +127,7 @@
         <option value="$PROJECT_DIR$/earnings_growth.py" />
         <option value="$PROJECT_DIR$/mkdirs.py" />
         <option value="$PROJECT_DIR$/basic_backtest.py" />
+        <option value="$PROJECT_DIR$/basic_backtest2.py" />
       </list>
     </option>
   </component>
@@ -98,10 +137,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="878" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="718" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -144,10 +182,10 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -163,7 +201,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.sparse_data">
+  <component name="RunManager" selected="Python.basic_backtest2">
+    <configuration name="basic_backtest2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="springbok-shared" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic_backtest2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="bundle_prep (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -218,24 +274,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="reindex" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="springbok-shared" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reindex.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="sparse_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -256,18 +294,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.sparse_data" />
-      <item itemvalue="Python.reindex" />
       <item itemvalue="Python.bundle_prep (1)" />
       <item itemvalue="Python.drop_non_arq" />
       <item itemvalue="Python.earnings_growth" />
+      <item itemvalue="Python.basic_backtest2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.basic_backtest2" />
         <item itemvalue="Python.sparse_data" />
         <item itemvalue="Python.earnings_growth" />
         <item itemvalue="Python.drop_non_arq" />
         <item itemvalue="Python.bundle_prep (1)" />
-        <item itemvalue="Python.reindex" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528920947161</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Starting to implement a portfolio tracker">
+      <created>1528984514396</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1528984514396</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -330,14 +375,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="878" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1761804" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41424802" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.34828496" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3915212" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3478803" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -363,7 +407,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Morning check-in, everything is working" />
     <MESSAGE value="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created earnings_growth.py, which makes a new csv file in fundamentals to show earnings growth." />
+    <MESSAGE value="Starting to implement a portfolio tracker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting to implement a portfolio tracker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -371,13 +416,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bundle_prep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.zipline/extension.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -549,13 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="123" column="35" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/drop_non_arq.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
@@ -577,10 +608,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="123" column="35" selection-start-line="123" selection-start-column="32" selection-end-line="123" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="202">
+          <caret line="104" selection-start-line="104" selection-end-line="107" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="103" column="20" lean-forward="true" selection-start-line="103" selection-start-column="20" selection-end-line="103" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
