@@ -137,12 +137,13 @@ import matplotlib as mpl
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
+portfolio = {}
+
 def initialize(context):
     attach_pipeline(
         make_pipeline(),
         'data_pipe'
     )
-
     
 def before_trading_start(context, data): 
     """
@@ -159,8 +160,23 @@ def handle_data(context, data):
     """
     Run every day, at market open.
     """
+    keys_to_remove = []
+
+    for asset in portfolio:
+        if asset not in context.todays_assets: # remove key from portfolio
+            keys_to_remove.append(asset)
+            order(symbol(asset), -portfolio[asset])
+
+    for key in keys_to_remove:
+        portfolio.pop(key)
+
     for asset in context.todays_assets:
-        order(symbol(asset), 10)
+        if asset not in portfolio:
+            order(symbol(asset), 10)
+            portfolio[asset] = 10
+
+
+    record(portfolio=portfolio)
 
 
 def analyze(context, perf):
