@@ -3,7 +3,7 @@ from collections import OrderedDict
 import csv
 
 downloads_directory = 'data_downloads'
-processed_directory = 'processed_data/fundamentals'
+processed_directory = 'processed_data/done'
 io_directory = 'io_files'
 
 desired_data = [

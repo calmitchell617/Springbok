@@ -62,36 +62,31 @@ for date in dates:
 
 
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
-    cap = Column(dtype=float)
+    pe1 = Column(dtype=float)
     de = Column(dtype=float)
+    eg = Column(dtype=float)
 
-cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
+pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
 de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
+eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
 
-assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in cap_df.columns], as_of_date=None)
+
+assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in pe1_df.columns], as_of_date=None)
 sids = pd.Int64Index([asset.sid for asset in assets])
 
-cap_frame, cap_frame.index, cap_frame.columns  = cap_df, datestamps, sids
+pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
 de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
+eg_frame, eg_frame.index, eg_frame.columns  = eg_df, datestamps, sids
 
 loaders = { # Every column of data needs its own loader
-    MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
-    MyDataSet.de: DataFrameLoader(MyDataSet.de, cap_frame),
+    MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
+    MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
+    MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
 }
 
 pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
     bundle_data.equity_daily_bar_reader,
     bundle_data.adjustment_reader,
-)
-
-cap_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.cap],
-    window_length=1,
-)
-
-de_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.de],
-    window_length=1,
 )
 
 def make_pipeline():
@@ -102,7 +97,9 @@ def make_pipeline():
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
-            'cap': MyDataSet.cap.latest,
+            'pe1': MyDataSet.pe1.latest,
+            'de': MyDataSet.de.latest,
+            'eg': MyDataSet.eg.latest
         },
         screen = StaticAssets(assets)
     )
@@ -126,8 +123,17 @@ def before_trading_start(context, data):
     """
     function is run every day before market opens
     """
+
+
     context.output = pipeline_output('data_pipe')
-    context.cap = context.output.sort(['cap'])[-10:]
+    context.pe1 = context.output.sort(['pe1'])[-100:]
+    context.eg = context.pe1.sort(['eg'])[-33:]
+    context.de = context.eg.sort(['de'])[:10]
+
+
+    """print('pe1: {}'.format(context.pe1))
+    print('de: {}'.format(context.de))
+    print('eg: {}'.format(context.eg))"""
 
 
 def handle_data(context, data):
@@ -138,7 +144,7 @@ def handle_data(context, data):
     keys_to_remove = []
 
     for asset in portfolio:
-        if asset not in context.output.index: # remove key from portfolio
+        if asset not in context.de.index: # remove key from portfolio
             keys_to_remove.append(asset)
             order(asset, -portfolio[asset]['shares'])
             print('sold {}'.format(asset))
@@ -148,13 +154,11 @@ def handle_data(context, data):
     for key in keys_to_remove:
         portfolio.pop(key)
 
-    for asset in context.cap.index:
+    for asset in context.de.index:
         if asset not in portfolio:
             order(asset, 10)
-            portfolio[asset] = {'cap': context.output.loc[asset]['cap'], 'shares': 10}
+            portfolio[asset] = {'shares': 10}
             print('bought {}'.format(asset))
-
-    print(portfolio)
 
 
     record(portfolio=str(portfolio))
@@ -181,8 +185,8 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2015-03-31', tz='utc')
-end = pd.Timestamp('2016-04-5', tz='utc')
+start = pd.Timestamp('2014-03-31', tz='utc')
+end = pd.Timestamp('2018-04-5', tz='utc')
 
 print('made it to run algorithm')
 
