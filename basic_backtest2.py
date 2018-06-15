@@ -12,6 +12,7 @@ from zipline.api import order_target, record, symbol
 import os
 
 import datetime as dt
+from collections import OrderedDict
 import pandas as pd
 from zipline.utils.run_algo import load_extensions
 
@@ -27,12 +28,12 @@ bundle_data = bundles.load('sharadar-pricing')
 fundamentals_directory = '/Users/calmitchell/s/springbok-shared/processed_data/fundamentals/'
 pricing_directory = '/Users/calmitchell/s/springbok-shared/processed_data/pricing/daily/'
 
-pricing_assets = {}
-fundamental_assets = {}
+pricing_assets = OrderedDict()
+fundamental_assets = OrderedDict()
 
 tickers = []
         
-for root, dirs, files in os.walk(pricing_directory): 
+for root, dirs, files in os.walk(pricing_directory):
     for file in files:
         if file.endswith('.csv'):
             pricing_assets[file[:-4]] = True
@@ -53,11 +54,6 @@ for ticker in pricing_assets:
     if ticker in fundamental_assets:
         tickers.append(ticker)
 
-assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in tickers], as_of_date=None)
-sids = pd.Int64Index([asset.sid for asset in assets])
-
-# dates = revenue_df.index.tolist() # we need to make a list of timestamps for every day that exists in our fundamental data
-
 datestamps = []
 
 for date in dates:
@@ -65,25 +61,22 @@ for date in dates:
     datestamps.append(newer_date)
 
 
-# In[5]:
-
-
-# here is where you import fundamental data into a pipeline, and where most of your trading
-# logic will live
-
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
-    pe1 = Column(dtype=float)
+    cap = Column(dtype=float)
     de = Column(dtype=float)
 
-pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
+cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
 de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
 
-pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
+assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in cap_df.columns], as_of_date=None)
+sids = pd.Int64Index([asset.sid for asset in assets])
+
+cap_frame, cap_frame.index, cap_frame.columns  = cap_df, datestamps, sids
 de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
 
 loaders = { # Every column of data needs its own loader
-    MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
-    MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
+    MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
+    MyDataSet.de: DataFrameLoader(MyDataSet.de, cap_frame),
 }
 
 pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
@@ -91,8 +84,8 @@ pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricin
     bundle_data.adjustment_reader,
 )
 
-pe1_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.pe1],
+cap_factor = SimpleMovingAverage( # custom factor created from fundamental data
+    inputs=[MyDataSet.cap],
     window_length=1,
 )
 
@@ -109,15 +102,10 @@ def make_pipeline():
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
-            'pe1': MyDataSet.pe1.latest,
-            'de': MyDataSet.de.latest,
+            'cap': MyDataSet.cap.latest,
         },
-        screen = pe1_factor.bottom(10) # screening our everything that isn't a top 10 stock in our custom factor
+        screen = StaticAssets(assets)
     )
-
-
-# In[6]:
-
 
 from zipline.data import bundles
 from zipline.api import symbol, order, record, schedule_function, attach_pipeline, pipeline_output
@@ -139,7 +127,8 @@ def before_trading_start(context, data):
     function is run every day before market opens
     """
     context.output = pipeline_output('data_pipe')
-    print(context.output)
+    context.cap = context.output.sort(['cap'])[-10:]
+
 
 def handle_data(context, data):
     """
@@ -159,10 +148,10 @@ def handle_data(context, data):
     for key in keys_to_remove:
         portfolio.pop(key)
 
-    for asset in context.output.index:
+    for asset in context.cap.index:
         if asset not in portfolio:
             order(asset, 10)
-            portfolio[asset] = {'pe1': context.output.loc[asset]['pe1'], 'shares': 10}
+            portfolio[asset] = {'cap': context.output.loc[asset]['cap'], 'shares': 10}
             print('bought {}'.format(asset))
 
     print(portfolio)
@@ -193,7 +182,7 @@ def analyze(context, perf):
 
 
 start = pd.Timestamp('2015-03-31', tz='utc')
-end = pd.Timestamp('2015-04-5', tz='utc')
+end = pd.Timestamp('2016-04-5', tz='utc')
 
 print('made it to run algorithm')
 
