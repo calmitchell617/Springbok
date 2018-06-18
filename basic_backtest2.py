@@ -101,7 +101,11 @@ def make_pipeline():
             'de': MyDataSet.de.latest,
             'eg': MyDataSet.eg.latest
         },
-        screen = StaticAssets(assets)
+        screen = StaticAssets(assets) &
+                 USEquityPricing.close.latest.notnull() &
+                 MyDataSet.de.latest.notnull() &
+                 MyDataSet.pe1.latest.notnull() &
+                 MyDataSet.eg.latest.notnull()
     )
 
 from zipline.data import bundles
@@ -126,14 +130,9 @@ def before_trading_start(context, data):
 
 
     context.output = pipeline_output('data_pipe')
-    context.pe1 = context.output.sort(['pe1'])[-100:]
-    context.eg = context.pe1.sort(['eg'])[-33:]
-    context.de = context.eg.sort(['de'])[:10]
-
-
-    """print('pe1: {}'.format(context.pe1))
-    print('de: {}'.format(context.de))
-    print('eg: {}'.format(context.eg))"""
+    context.pe1 = context.output.sort_values(['pe1'])[-100:]
+    context.eg = context.pe1.sort_values(['eg'])[-33:]
+    context.de = context.eg.sort_values(['de'])[:10]
 
 
 def handle_data(context, data):
@@ -185,8 +184,8 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2014-03-31', tz='utc')
-end = pd.Timestamp('2018-04-5', tz='utc')
+start = pd.Timestamp('2018-04-01', tz='utc')
+end = pd.Timestamp('2018-04-05', tz='utc')
 
 print('made it to run algorithm')
 

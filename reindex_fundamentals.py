@@ -12,7 +12,7 @@ data = OrderedDict()
 
 for root, dirs, files in os.walk(preprocessed_directory):  # Lets get all of our tickers
     for file in files:
-        if file.endswith('csv'):
+        if file.startswith('earnings_growth'):
             data_list.append(file[:-4])
 
 data_list.sort()
