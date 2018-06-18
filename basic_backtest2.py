@@ -141,14 +141,17 @@ def handle_data(context, data):
     """
 
     keys_to_remove = []
+    assets_held = []
+    assets_bought = []
+    assets_sold = []
 
     for asset in portfolio:
         if asset not in context.de.index: # remove key from portfolio
             keys_to_remove.append(asset)
             order(asset, -portfolio[asset]['shares'])
-            print('sold {}'.format(asset))
+            assets_sold.append(asset)
         else:
-            print('held onto {}'.format(asset))
+            assets_held.append(asset)
 
     for key in keys_to_remove:
         portfolio.pop(key)
@@ -157,7 +160,11 @@ def handle_data(context, data):
         if asset not in portfolio:
             order(asset, 10)
             portfolio[asset] = {'shares': 10}
-            print('bought {}'.format(asset))
+            assets_bought.append(asset)
+
+    record(assets_held=str(assets_held))
+    record(assets_bought=str(assets_bought))
+    record(assets_sold=str(assets_sold))
 
 
     record(portfolio=str(portfolio))
@@ -184,8 +191,8 @@ def analyze(context, perf):
 # but I'm working on it.
 
 
-start = pd.Timestamp('2018-04-01', tz='utc')
-end = pd.Timestamp('2018-04-05', tz='utc')
+start = pd.Timestamp('2014-09-01', tz='utc')
+end = pd.Timestamp('2018-04-20', tz='utc')
 
 print('made it to run algorithm')
 
