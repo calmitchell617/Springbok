@@ -3,6 +3,9 @@ import datetime as dt
 from collections import OrderedDict
 
 import pandas as pd
+import matplotlib as mpl
+mpl.use('TkAgg')
+import matplotlib.pyplot as plt
 
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
@@ -11,6 +14,16 @@ from zipline.pipeline.filters import StaticAssets
 from zipline.pipeline.loaders import USEquityPricingLoader
 from zipline.pipeline.loaders.frame import DataFrameLoader
 from zipline.utils.run_algo import load_extensions
+from zipline.finance.execution import MarketOrder
+from zipline import run_algorithm
+from zipline.api import (
+    attach_pipeline,
+    pipeline_output,
+    order_target,
+    order_target_percent,
+    get_open_orders,
+    record
+)
 
 load_extensions(
     default=True,
@@ -58,6 +71,7 @@ for date in dates:
 
 
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
+    cap = Column(dtype=float)
     pe1 = Column(dtype=float)
     de = Column(dtype=float)
     eg = Column(dtype=float)
@@ -66,6 +80,7 @@ class MyDataSet(DataSet): # This is where we create columns to put in our pipeli
 pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
 de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
 eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
+cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
 
 assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in pe1_df.columns], as_of_date=None)
 sids = pd.Int64Index([asset.sid for asset in assets])
@@ -73,11 +88,13 @@ sids = pd.Int64Index([asset.sid for asset in assets])
 pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
 de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
 eg_frame, eg_frame.index, eg_frame.columns  = eg_df, datestamps, sids
+cap_frame, cap_frame.index, cap_frame.columns  = cap_df, datestamps, sids
 
 loaders = { # Every column of data needs its own loader
     MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
     MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
     MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
+    MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
 }
 
 pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
@@ -95,30 +112,24 @@ def make_pipeline():
             'price': USEquityPricing.close.latest,
             'pe1': MyDataSet.pe1.latest,
             'de': MyDataSet.de.latest,
-            'eg': MyDataSet.eg.latest
+            'eg': MyDataSet.eg.latest,
+            'cap': MyDataSet.cap.latest,
         },
         screen = StaticAssets(assets) &
                  USEquityPricing.close.latest.notnull() &
                  MyDataSet.de.latest.notnull() &
                  MyDataSet.pe1.latest.notnull() &
-                 MyDataSet.eg.latest.notnull()
+                 MyDataSet.eg.latest.notnull() &
+                 MyDataSet.cap.latest.notnull()
     )
-
-from zipline.api import (
-    attach_pipeline,
-    pipeline_output,
-    order_target_percent,
-    order_target,
-    set_max_leverage
-)
-from zipline import run_algorithm
-import matplotlib as mpl
-mpl.use('TkAgg')
-import matplotlib.pyplot as plt
 
 longs_portfolio = {}
 shorts_portfolio = {}
-set_max_leverage(1)
+
+market_order = MarketOrder()
+
+buys = 0
+sells = 0
 
 def initialize(context):
     attach_pipeline(
@@ -126,18 +137,28 @@ def initialize(context):
         'data_pipe'
     )
 
+    context.buys = 0
+    context.sells = 0
+
+
 def before_trading_start(context, data): 
     """
     function is run every day before market opens
     """
     context.output = pipeline_output('data_pipe')
-    context.pe1_longs = context.output.sort_values(['pe1'])[-100:]
-    context.eg_longs = context.pe1_longs.sort_values(['eg'])[-33:]
-    context.de_longs = context.eg_longs.sort_values(['de'])[:10]
 
-    context.pe1_shorts = context.output.sort_values(['pe1'])[1100:]
-    context.eg_shorts = context.pe1_shorts.sort_values(['eg'])[33:]
-    context.de_shorts = context.eg_shorts.sort_values(['de'])[:-10]
+    context.cap_plays = context.output.sort_values(['cap'])[-4000:]  # take top 4000 stocks by market cap (for liquidity)
+
+    context.pe1_longs = context.cap_plays.sort_values(['pe1'])[:1000]  # filter 1000 stocks with lowest pe ratios
+    context.eg_longs = context.pe1_longs.sort_values(['eg'])[-500:]  # filter 500 stocks with highest earning growth
+    context.de_longs = context.eg_longs.sort_values(['de'])[:100]  # filter top 100 stocks by lowest debt equity ratio
+
+    context.pe1_shorts = context.cap_plays.sort_values(['pe1'])[-1000:]  # same thing but backwards for shorts
+    context.eg_shorts = context.pe1_shorts.sort_values(['eg'])[:500]
+    context.de_shorts = context.eg_shorts.sort_values(['de'])[-100:]
+
+    record(open_orders=str(get_open_orders()))
+
 
 def handle_data(context, data):
     """
@@ -146,17 +167,35 @@ def handle_data(context, data):
 
     longs_to_remove = []
 
+    for asset in longs_portfolio:
+        if asset not in context.de_longs.index:  # remove key from portfolio
+            context.sells += 1
+            longs_to_remove.append(asset)
+            order_target(asset, 0, style=market_order)
+
     for asset in context.de_longs.index:
         if asset not in longs_portfolio:
-            order_target_percent(asset, .05)
+            context.buys += 1
             longs_portfolio[asset] = True
-
-    for asset in longs_portfolio:
-        if asset not in context.de_longs.index: # remove key from portfolio
-            order_target(asset, 0)
+            order_target_percent(asset, .005, style=market_order)
 
     for key in longs_to_remove:
         longs_portfolio.pop(key)
+
+    shorts_to_remove = []
+
+    for asset in shorts_portfolio:
+        if asset not in context.de_shorts.index:  # remove key from portfolio
+            shorts_to_remove.append(asset)
+            order_target(asset, 0, style=market_order)
+
+    for asset in context.de_shorts.index:
+        if asset not in shorts_portfolio:
+            shorts_portfolio[asset] = True
+            order_target_percent(asset, -0.005, style=market_order)
+
+    for key in shorts_to_remove:
+        shorts_portfolio.pop(key)
 
 def analyze(context, perf):
     """
@@ -171,7 +210,7 @@ def analyze(context, perf):
     plt.legend(loc=0)
     plt.show()
 
-start = pd.Timestamp('2014-09-01', tz='utc')
+start = pd.Timestamp('2016-09-01', tz='utc')
 end = pd.Timestamp('2018-04-20', tz='utc')
 
 print('Running algorithm from {} to {}'.format(start, end))
