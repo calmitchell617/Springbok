@@ -104,14 +104,21 @@ def make_pipeline():
                  MyDataSet.eg.latest.notnull()
     )
 
-from zipline.api import order, record, attach_pipeline, pipeline_output, order_target_percent
+from zipline.api import (
+    attach_pipeline,
+    pipeline_output,
+    order_target_percent,
+    order_target,
+    set_max_leverage
+)
 from zipline import run_algorithm
 import matplotlib as mpl
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
-portfolio = {}
-starting_capital = 10000
+longs_portfolio = {}
+shorts_portfolio = {}
+set_max_leverage(1)
 
 def initialize(context):
     attach_pipeline(
@@ -124,42 +131,32 @@ def before_trading_start(context, data):
     function is run every day before market opens
     """
     context.output = pipeline_output('data_pipe')
-    context.pe1 = context.output.sort_values(['pe1'])[-100:]
-    context.eg = context.pe1.sort_values(['eg'])[-33:]
-    context.de = context.eg.sort_values(['de'])[:10]
+    context.pe1_longs = context.output.sort_values(['pe1'])[-100:]
+    context.eg_longs = context.pe1_longs.sort_values(['eg'])[-33:]
+    context.de_longs = context.eg_longs.sort_values(['de'])[:10]
+
+    context.pe1_shorts = context.output.sort_values(['pe1'])[1100:]
+    context.eg_shorts = context.pe1_shorts.sort_values(['eg'])[33:]
+    context.de_shorts = context.eg_shorts.sort_values(['de'])[:-10]
 
 def handle_data(context, data):
     """
     Run every day, at market open.
     """
 
-    keys_to_remove = []
-    assets_held = []
-    assets_bought = []
-    assets_sold = []
+    longs_to_remove = []
 
-    for asset in portfolio:
-        if asset not in context.de.index: # remove key from portfolio
-            keys_to_remove.append(asset)
-            order(asset, -portfolio[asset]['shares'])
-            assets_sold.append(asset)
-        else:
-            assets_held.append(asset)
+    for asset in context.de_longs.index:
+        if asset not in longs_portfolio:
+            order_target_percent(asset, .05)
+            longs_portfolio[asset] = True
 
-    for key in keys_to_remove:
-        portfolio.pop(key)
+    for asset in longs_portfolio:
+        if asset not in context.de_longs.index: # remove key from portfolio
+            order_target(asset, 0)
 
-    for asset in context.de.index:
-        if asset not in portfolio:
-            order_target_percent(asset, .1)
-            portfolio[asset] = {'shares': 10}
-            assets_bought.append(asset)
-
-    record(assets_held=str(assets_held))
-    record(assets_bought=str(assets_bought))
-    record(assets_sold=str(assets_sold))
-
-    record(portfolio=str(portfolio))
+    for key in longs_to_remove:
+        longs_portfolio.pop(key)
 
 def analyze(context, perf):
     """
@@ -186,7 +183,7 @@ run_algorithm(
     end=end, 
     initialize=initialize, 
     analyze=analyze,
-    capital_base=starting_capital,
+    capital_base=100000,
     handle_data=handle_data,
     loaders=loaders
 )

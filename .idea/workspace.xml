@@ -17,8 +17,8 @@
       <file leaf-file-name="basic_backtest2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="106" column="93" selection-start-line="106" selection-start-column="93" selection-end-line="106" selection-end-column="93" />
+            <state relative-caret-position="262">
+              <caret line="119" column="5" lean-forward="true" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -378,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529347333174</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Starting to implement order_target_value function">
+      <created>1529421518731</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1529421518731</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -452,7 +459,8 @@
     <MESSAGE value="Trying to get earnings growth to forward fill properly" />
     <MESSAGE value="earnings_growth2.py did the trick" />
     <MESSAGE value="Ran a simplified version of ray's strategy in basic_backtest2.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ran a simplified version of ray's strategy in basic_backtest2.py" />
+    <MESSAGE value="Starting to implement order_target_value function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting to implement order_target_value function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -626,6 +634,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-623">
           <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -676,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="106" column="93" selection-start-line="106" selection-start-column="93" selection-end-line="106" selection-end-column="93" />
+        <state relative-caret-position="262">
+          <caret line="119" column="5" lean-forward="true" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
