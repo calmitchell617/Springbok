@@ -1,19 +1,15 @@
+import os
+import datetime as dt
+from collections import OrderedDict
+
+import pandas as pd
+
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
 from zipline.pipeline.data import USEquityPricing, Column, DataSet
-from zipline.pipeline.engine import SimplePipelineEngine
 from zipline.pipeline.filters import StaticAssets
 from zipline.pipeline.loaders import USEquityPricingLoader
 from zipline.pipeline.loaders.frame import DataFrameLoader
-from zipline.utils.calendars import get_calendar
-from zipline.pipeline.factors import SimpleMovingAverage
-from zipline.api import order_target, record, symbol
-
-import os
-
-import datetime as dt
-from collections import OrderedDict
-import pandas as pd
 from zipline.utils.run_algo import load_extensions
 
 load_extensions(
@@ -57,8 +53,8 @@ for ticker in pricing_assets:
 datestamps = []
 
 for date in dates:
-    newer_date = pd.Timestamp(date, tz='utc')
-    datestamps.append(newer_date)
+    tz_aware_date = pd.Timestamp(date, tz='utc')
+    datestamps.append(tz_aware_date)
 
 
 class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
@@ -66,10 +62,10 @@ class MyDataSet(DataSet): # This is where we create columns to put in our pipeli
     de = Column(dtype=float)
     eg = Column(dtype=float)
 
+
 pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
 de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
 eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
-
 
 assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in pe1_df.columns], as_of_date=None)
 sids = pd.Int64Index([asset.sid for asset in assets])
@@ -108,32 +104,29 @@ def make_pipeline():
                  MyDataSet.eg.latest.notnull()
     )
 
-from zipline.data import bundles
-from zipline.api import symbol, order, record, schedule_function, attach_pipeline, pipeline_output
+from zipline.api import order, record, attach_pipeline, pipeline_output, order_target_percent
 from zipline import run_algorithm
-from zipline.utils.run_algo import load_extensions
 import matplotlib as mpl
 mpl.use('TkAgg')
 import matplotlib.pyplot as plt
 
 portfolio = {}
+starting_capital = 10000
 
 def initialize(context):
     attach_pipeline(
         make_pipeline(),
         'data_pipe'
     )
+
 def before_trading_start(context, data): 
     """
     function is run every day before market opens
     """
-
-
     context.output = pipeline_output('data_pipe')
     context.pe1 = context.output.sort_values(['pe1'])[-100:]
     context.eg = context.pe1.sort_values(['eg'])[-33:]
     context.de = context.eg.sort_values(['de'])[:10]
-
 
 def handle_data(context, data):
     """
@@ -158,7 +151,7 @@ def handle_data(context, data):
 
     for asset in context.de.index:
         if asset not in portfolio:
-            order(asset, 10)
+            order_target_percent(asset, .1)
             portfolio[asset] = {'shares': 10}
             assets_bought.append(asset)
 
@@ -166,9 +159,7 @@ def handle_data(context, data):
     record(assets_bought=str(assets_bought))
     record(assets_sold=str(assets_sold))
 
-
     record(portfolio=str(portfolio))
-
 
 def analyze(context, perf):
     """
@@ -183,18 +174,10 @@ def analyze(context, perf):
     plt.legend(loc=0)
     plt.show()
 
-
-# Alright, let's start the show!
-# You need to run this iPython cell twice for the matplotlib graph to show up. No idea why.
-
-# I do not have access to SPY or any other benchmark to compare our algorithm right now,
-# but I'm working on it.
-
-
 start = pd.Timestamp('2014-09-01', tz='utc')
 end = pd.Timestamp('2018-04-20', tz='utc')
 
-print('made it to run algorithm')
+print('Running algorithm from {} to {}'.format(start, end))
 
 run_algorithm(
     bundle='sharadar-pricing',
@@ -203,7 +186,7 @@ run_algorithm(
     end=end, 
     initialize=initialize, 
     analyze=analyze,
-    capital_base=10000, 
+    capital_base=starting_capital,
     handle_data=handle_data,
     loaders=loaders
 )
