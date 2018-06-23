@@ -52,11 +52,13 @@ def prepare_data(bundle_data):
         sids = pd.Int64Index([asset.sid for asset in assets])
         break
 
+
     class MyDataSet(DataSet):
-        pass
+        for point in data_points:
+            locals()[point] = Column(dtype=float)
 
 
-    MyDataSet = helper_functions.set_dataset_columns([data_point for data_point in data_points], MyDataSet)
+    # MyDataSet = helper_functions.set_dataset_columns([data_point for data_point in data_points], MyDataSet)
 
     loaders = {}
 
@@ -70,21 +72,19 @@ def prepare_data(bundle_data):
 
 def make_pipeline():
 
-    print(MyDataSet.pe1)
-
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
             'pe1': MyDataSet.pe1.latest,
             'de': MyDataSet.de.latest,
-            'eg': MyDataSet.eg.latest,
-            'cap': MyDataSet.cap.latest,
+            'earnings_growth': MyDataSet.earnings_growth.latest,
+            'marketcap': MyDataSet.marketcap.latest,
         },
         screen=USEquityPricing.close.latest.notnull() &
                MyDataSet.de.latest.notnull() &
                MyDataSet.pe1.latest.notnull() &
-               MyDataSet.eg.latest.notnull() &
-               MyDataSet.cap.latest.notnull()
+               MyDataSet.earnings_growth.latest.notnull() &
+               MyDataSet.marketcap.latest.notnull()
     )
 
 def initialize(context):
@@ -103,7 +103,7 @@ def before_trading_start(context, data):
     """
     context.output = pipeline_output('data_pipe')
 
-    context.cap_plays = context.output.sort_values(['cap'])[-4000:]  # take top 4000 stocks by market cap for liquidity
+    context.cap_plays = context.output.sort_values(['marketcap'])[-4000:]  # take top 4000 stocks by market cap for liquidity
 
     context.longs = helper_functions.get_longs(context.cap_plays)
 
@@ -172,6 +172,8 @@ if __name__ == "__main__":
     bundle = bundles.load('sharadar-pricing')  # This is a bundle made from Sharadar SEP data
 
     loaders, MyDataSet = prepare_data(bundle)
+
+    print('Made it to run_algorithm')
 
     run_algorithm(
         bundle='sharadar-pricing',

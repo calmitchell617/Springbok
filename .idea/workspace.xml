@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="" />
+    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/basic_backtest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic_backtest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_backtest2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_functions.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,12 +15,39 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="37" column="55" lean-forward="true" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="basic_backtest2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1784">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="409">
+              <caret line="173" column="29" lean-forward="true" selection-start-line="173" selection-start-column="29" selection-end-line="173" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helper_functions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helper_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="83" column="56" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#53#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -31,8 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tickers</find>
-      <find>index</find>
       <find>load</find>
       <find>iter</find>
       <find>portfolio</find>
@@ -61,6 +91,8 @@
       <find>longs_portfolio</find>
       <find>shorts_portfolio</find>
       <find>MyDataSet</find>
+      <find>cap</find>
+      <find>eg</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -85,12 +117,12 @@
         <option value="$PROJECT_DIR$/sparse_data.py" />
         <option value="$PROJECT_DIR$/drop_non_arq.py" />
         <option value="$PROJECT_DIR$/mkdirs.py" />
-        <option value="$PROJECT_DIR$/basic_backtest.py" />
         <option value="$PROJECT_DIR$/fundamentals_prep.py" />
         <option value="$PROJECT_DIR$/reindex_fundamentals.py" />
         <option value="$PROJECT_DIR$/earnings_growth.py" />
         <option value="$PROJECT_DIR$/earnings_growth2.py" />
         <option value="$PROJECT_DIR$/springbok_api.py" />
+        <option value="$PROJECT_DIR$/basic_backtest.py" />
         <option value="$PROJECT_DIR$/helper_functions.py" />
         <option value="$PROJECT_DIR$/basic_backtest2.py" />
       </list>
@@ -111,7 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,29 +150,15 @@
               <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
               <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
-              <item name="io_files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
-              <item name="processed_data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
-              <item name="processed_data" type="462c0819:PsiDirectoryNode" />
-              <item name="pricing" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/calmitchell/.pyenv/versions/3.5.5/lib/python3.5/site-packages/pandas/io/parsers.py" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -168,6 +185,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.basic_backtest2">
+    <configuration name="basic_backtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="springbok-shared" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic_backtest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="basic_backtest2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,38 +275,20 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="working-small-universe-full-data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="springbok-shared" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Springbok/zipline" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Springbok/zipline/working-small-universe-full-data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list>
       <item itemvalue="Python.earnings_growth" />
       <item itemvalue="Python.basic_backtest2" />
-      <item itemvalue="Python.working-small-universe-full-data" />
       <item itemvalue="Python.reindex_fundamentals" />
       <item itemvalue="Python.earnings_growth2" />
+      <item itemvalue="Python.basic_backtest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.basic_backtest2" />
+        <item itemvalue="Python.basic_backtest" />
         <item itemvalue="Python.earnings_growth2" />
         <item itemvalue="Python.earnings_growth" />
         <item itemvalue="Python.reindex_fundamentals" />
-        <item itemvalue="Python.working-small-universe-full-data" />
       </list>
     </recent_temporary>
   </component>
@@ -405,7 +422,21 @@
       <option name="project" value="LOCAL" />
       <updated>1529691643704</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Renamed basic_backtest2.py to basic_backtest.py">
+      <created>1529752604078</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1529752604078</updated>
+    </task>
+    <task id="LOCAL-00019" summary="basic_backtest2 is back, because its broken">
+      <created>1529757890510</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1529757890510</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -419,17 +450,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1430585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1430585" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4638404" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.33790523" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3369697" />
       <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31636363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39650872" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39650872" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -442,20 +474,20 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41396508" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.1430585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41396508" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39650872" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.33790523" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -483,15 +515,16 @@
     <MESSAGE value="Constraining leverage" />
     <MESSAGE value="Implemented a more robust version of ray's strategy (including shorts and portfolio control)" />
     <MESSAGE value="Implemented scope control in basic_backtest2.py, put some helpful stuff in helper_functions.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented scope control in basic_backtest2.py, put some helpful stuff in helper_functions.py" />
+    <MESSAGE value="Renamed basic_backtest2.py to basic_backtest.py" />
+    <MESSAGE value="basic_backtest2 is back, because its broken" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic_backtest2 is back, because its broken" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep_2.py" />
     <entry file="file://$PROJECT_DIR$/dataframe_exps.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/bundle_prep.py">
@@ -631,7 +664,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+    <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-623">
           <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
@@ -687,9 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,9 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="11" selection-start-line="11" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -710,20 +737,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="37" column="55" lean-forward="true" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/helper_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
+        <state relative-caret-position="509">
+          <caret line="83" column="56" selection-start-line="83" selection-start-column="56" selection-end-line="83" selection-end-column="56" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1784">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="409">
+          <caret line="173" column="29" lean-forward="true" selection-start-line="173" selection-start-column="29" selection-end-line="173" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
