@@ -1,175 +1,146 @@
+import helper_functions
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
 from zipline.pipeline.data import USEquityPricing, Column, DataSet
-from zipline.pipeline.engine import SimplePipelineEngine
-from zipline.pipeline.filters import StaticAssets
-from zipline.pipeline.loaders import USEquityPricingLoader
 from zipline.pipeline.loaders.frame import DataFrameLoader
-from zipline.utils.calendars import get_calendar
-from zipline.pipeline.factors import SimpleMovingAverage
-from zipline.api import order_target, record, symbol
+from zipline.utils.run_algo import load_extensions
+from zipline import run_algorithm
+from zipline.api import (
+    attach_pipeline,
+    pipeline_output,
+    order_target,
+    order_target_percent,
+    get_open_orders,
+    record
+)
 
 import os
-
 import datetime as dt
+
 import pandas as pd
-from zipline.utils.run_algo import load_extensions
-
-load_extensions(
-    default=True,
-    extensions=[],
-    strict=True,
-    environ=os.environ,
-)
-
-bundle_data = bundles.load('sharadar-pricing')
-
-fundamentals_directory = '/Users/calmitchell/s/springbok-shared/processed_data/fundamentals/'
-pricing_directory = '/Users/calmitchell/s/springbok-shared/processed_data/pricing/daily/'
-
-pricing_assets = {}
-fundamental_assets = {}
-
-tickers = []
-        
-for root, dirs, files in os.walk(pricing_directory): 
-    for file in files:
-        if file.endswith('.csv'):
-            pricing_assets[file[:-4]] = True
-            
-for root, dirs, files in os.walk(fundamentals_directory): 
-    for file in files:
-        if file.endswith('.csv'):
-            fundamental_tickers_df = pd.read_csv('{}{}'.format(fundamentals_directory, file), index_col=0)
-
-            for ticker in fundamental_tickers_df.columns:
-                fundamental_assets[ticker] = True
-                
-            dates = fundamental_tickers_df.index.tolist()
-            
-            break
-
-for ticker in pricing_assets:
-    if ticker in fundamental_assets:
-        tickers.append(ticker)
-
-assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in tickers], as_of_date=None)
-sids = pd.Int64Index([asset.sid for asset in assets])
-
-# dates = revenue_df.index.tolist() # we need to make a list of timestamps for every day that exists in our fundamental data
-
-datestamps = []
-
-for date in dates:
-    newer_date = pd.Timestamp(date, tz='utc')
-    datestamps.append(newer_date)
+import matplotlib
+matplotlib.use('TkAgg')  # This forces matplotlib to use TkAgg as a backend
+import matplotlib.pyplot as plt
 
 
-# In[5]:
-
-
-# here is where you import fundamental data into a pipeline, and where most of your trading
-# logic will live
-
-class MyDataSet(DataSet): # This is where we create columns to put in our pipeline
+class MyDataSet(DataSet):  # This is where we create columns to put in our pipeline
+    cap = Column(dtype=float)
     pe1 = Column(dtype=float)
     de = Column(dtype=float)
+    eg = Column(dtype=float)
 
-pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
-de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
+def prepare_data(bundle_data):
 
-pe1_frame, pe1_frame.index, pe1_frame.columns  = pe1_df, datestamps, sids
-de_frame, de_frame.index, de_frame.columns  = de_df, datestamps, sids
+    # Specify where our CSV files live
+    fundamentals_directory = 'processed_data/fundamentals/'
+    pricing_directory = 'processed_data/pricing/daily/'
 
-loaders = { # Every column of data needs its own loader
-    MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
-    MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
-}
+    # The following two variables are ordered dicts that contain the name of every security in the pricing,
+    # and fundamental directories, respectfully.
+    pricing_assets = helper_functions.get_pricing_securities(pricing_directory)
+    fundamental_assets, dates = helper_functions.get_dates(fundamentals_directory)
 
-pipeline_loader = USEquityPricingLoader( # a default loader for us equity pricing
-    bundle_data.equity_daily_bar_reader,
-    bundle_data.adjustment_reader,
-)
+    # Securities that are in both pricing_assets, and fundamental_assets
+    tickers = helper_functions.get_tickers_in_both(pricing_assets, fundamental_assets)
 
-pe1_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.pe1],
-    window_length=1,
-)
+    date_stamps = helper_functions.convert_to_date_stamps(dates)
 
-de_factor = SimpleMovingAverage( # custom factor created from fundamental data
-    inputs=[MyDataSet.de],
-    window_length=1,
-)
+    pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
+    de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
+    eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
+    cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
+
+    assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in pe1_df.columns], as_of_date=None)
+    sids = pd.Int64Index([asset.sid for asset in assets])
+
+    pe1_frame, pe1_frame.index, pe1_frame.columns = pe1_df, date_stamps, sids
+    de_frame, de_frame.index, de_frame.columns = de_df, date_stamps, sids
+    eg_frame, eg_frame.index, eg_frame.columns = eg_df, date_stamps, sids
+    cap_frame, cap_frame.index, cap_frame.columns = cap_df, date_stamps, sids
+
+    return {  # Every column of data needs its own loader
+        MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
+        MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
+        MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
+        MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
+    }
 
 def make_pipeline():
-    """
-    Data from a pipeline is available to your algorithm in before_trading_start(),
-    and handle_data(), as long as you attach the pipeline in initialize().
-    """
+
     return Pipeline(
         columns={
             'price': USEquityPricing.close.latest,
             'pe1': MyDataSet.pe1.latest,
             'de': MyDataSet.de.latest,
+            'eg': MyDataSet.eg.latest,
+            'cap': MyDataSet.cap.latest,
         },
-        screen = pe1_factor.bottom(10) # screening our everything that isn't a top 10 stock in our custom factor
+        screen=USEquityPricing.close.latest.notnull() &
+               MyDataSet.de.latest.notnull() &
+               MyDataSet.pe1.latest.notnull() &
+               MyDataSet.eg.latest.notnull() &
+               MyDataSet.cap.latest.notnull()
     )
 
-
-# In[6]:
-
-
-from zipline.data import bundles
-from zipline.api import symbol, order, record, schedule_function, attach_pipeline, pipeline_output
-from zipline import run_algorithm
-from zipline.utils.run_algo import load_extensions
-import matplotlib as mpl
-mpl.use('TkAgg')
-import matplotlib.pyplot as plt
-
-portfolio = {}
-
 def initialize(context):
+
+    context.longs_portfolio = {}
+    context.shorts_portfolio = {}
+
     attach_pipeline(
         make_pipeline(),
         'data_pipe'
     )
+
 def before_trading_start(context, data): 
     """
     function is run every day before market opens
     """
     context.output = pipeline_output('data_pipe')
-    print(context.output)
+
+    context.cap_plays = context.output.sort_values(['cap'])[-4000:]  # take top 4000 stocks by market cap for liquidity
+
+    context.longs = helper_functions.get_longs(context.cap_plays)
+
+    context.shorts = helper_functions.get_shorts(context.cap_plays)
+
+    record(open_orders=str(get_open_orders()))
+
 
 def handle_data(context, data):
     """
     Run every day, at market open.
     """
 
-    keys_to_remove = []
+    longs_to_remove = []
 
-    for asset in portfolio:
-        if asset not in context.output.index: # remove key from portfolio
-            keys_to_remove.append(asset)
-            order(asset, -portfolio[asset]['shares'])
-            print('sold {}'.format(asset))
-        else:
-            print('held onto {}'.format(asset))
+    for asset in context.longs_portfolio:  # search portfolio for positions to close out
+        if asset not in context.longs.index:
+            longs_to_remove.append(asset)
+            order_target(asset, 0)
 
-    for key in keys_to_remove:
-        portfolio.pop(key)
+    for asset in context.longs.index:  # search context.longs for stocks to add to portfolio
+        if asset not in context.longs_portfolio:
+            context.longs_portfolio[asset] = True
+            order_target_percent(asset, .005)
 
-    for asset in context.output.index:
-        if asset not in portfolio:
-            order(asset, 10)
-            portfolio[asset] = {'pe1': context.output.loc[asset]['pe1'], 'shares': 10}
-            print('bought {}'.format(asset))
+    for key in longs_to_remove:
+        context.longs_portfolio.pop(key)
 
-    print(portfolio)
+    shorts_to_remove = []
 
+    for asset in context.shorts_portfolio:  # search portfolio for positions to close out
+        if asset not in context.shorts.index:
+            shorts_to_remove.append(asset)
+            order_target(asset, 0)
 
-    record(portfolio=str(portfolio))
+    for asset in context.shorts.index:  # search context.shorts for stocks to add to portfolio
+        if asset not in context.shorts_portfolio:
+            context.shorts_portfolio[asset] = True
+            order_target_percent(asset, -0.005)
 
+    for key in shorts_to_remove:
+        context.shorts_portfolio.pop(key)
 
 def analyze(context, perf):
     """
@@ -184,27 +155,27 @@ def analyze(context, perf):
     plt.legend(loc=0)
     plt.show()
 
+if __name__ == "__main__":
 
-# Alright, let's start the show!
-# You need to run this iPython cell twice for the matplotlib graph to show up. No idea why.
+    load_extensions(
+        default=True,
+        extensions=[],
+        strict=True,
+        environ=os.environ,
+    )
 
-# I do not have access to SPY or any other benchmark to compare our algorithm right now,
-# but I'm working on it.
+    bundle_data = bundles.load('sharadar-pricing')  # This is a bundle made from Sharadar SEP data
 
+    loaders = prepare_data(bundle_data)
 
-start = pd.Timestamp('2015-03-31', tz='utc')
-end = pd.Timestamp('2015-04-5', tz='utc')
-
-print('made it to run algorithm')
-
-run_algorithm(
-    bundle='sharadar-pricing',
-    before_trading_start=before_trading_start, 
-    start = start, 
-    end=end, 
-    initialize=initialize, 
-    analyze=analyze,
-    capital_base=10000, 
-    handle_data=handle_data,
-    loaders=loaders
-)
+    run_algorithm(
+        bundle='sharadar-pricing',
+        before_trading_start=before_trading_start,
+        start=pd.Timestamp('2018-04-01', tz='utc'),
+        end=pd.Timestamp('2018-04-20', tz='utc'),
+        initialize=initialize,
+        analyze=analyze,
+        capital_base=100000,
+        handle_data=handle_data,
+        loaders=loaders
+    )

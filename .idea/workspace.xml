@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/helper_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic_backtest2.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic_backtest2.py" afterDir="false" />
-    </list>
+    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +14,8 @@
       <file leaf-file-name="basic_backtest2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1784">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -187,7 +180,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic_backtest2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic_backtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -405,7 +398,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529440791006</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implemented scope control in basic_backtest2.py, put some helpful stuff in helper_functions.py">
+      <created>1529691643704</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1529691643704</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -419,13 +419,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.1430585" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4638404" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33790523" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4638404" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.33790523" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
@@ -483,7 +482,8 @@
     <MESSAGE value="Starting to implement order_target_value function" />
     <MESSAGE value="Constraining leverage" />
     <MESSAGE value="Implemented a more robust version of ray's strategy (including shorts and portfolio control)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a more robust version of ray's strategy (including shorts and portfolio control)" />
+    <MESSAGE value="Implemented scope control in basic_backtest2.py, put some helpful stuff in helper_functions.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented scope control in basic_backtest2.py, put some helpful stuff in helper_functions.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -722,11 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/basic_backtest2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1784">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
