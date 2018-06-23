@@ -1,7 +1,7 @@
 import helper_functions
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
-from zipline.pipeline.data import USEquityPricing, Column, DataSet
+from zipline.pipeline.data import USEquityPricing, Column, DataSet, BoundColumn
 from zipline.pipeline.loaders.frame import DataFrameLoader
 from zipline.utils.run_algo import load_extensions
 from zipline import run_algorithm
@@ -19,25 +19,21 @@ import datetime as dt
 
 import pandas as pd
 import matplotlib
-matplotlib.use('TkAgg')  # This forces matplotlib to use TkAgg as a backend
+matplotlib.use('TkAgg')  # This forces MatPlotLib to use TkAgg as a backend
 import matplotlib.pyplot as plt
 
-
-class MyDataSet(DataSet):  # This is where we create columns to put in our pipeline
-    cap = Column(dtype=float)
-    pe1 = Column(dtype=float)
-    de = Column(dtype=float)
-    eg = Column(dtype=float)
-
 def prepare_data(bundle_data):
+
+    data_points = ['pe1', 'de', 'earnings_growth', 'marketcap']
 
     # Specify where our CSV files live
     fundamentals_directory = 'processed_data/fundamentals/'
     pricing_directory = 'processed_data/pricing/daily/'
 
-    # The following two variables are ordered dicts that contain the name of every security in the pricing,
-    # and fundamental directories, respectfully.
+    # pricing_assets is an ordered dict that contains the name of every security in the pricing directory
     pricing_assets = helper_functions.get_pricing_securities(pricing_directory)
+    # fundamental_assets is an ordered dict that contains the name of every security in the fundamentals directory
+    # dates is a list of dates that the fundamentals directory is indexed by
     fundamental_assets, dates = helper_functions.get_dates(fundamentals_directory)
 
     # Securities that are in both pricing_assets, and fundamental_assets
@@ -45,27 +41,36 @@ def prepare_data(bundle_data):
 
     date_stamps = helper_functions.convert_to_date_stamps(dates)
 
-    pe1_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'pe1'), usecols=tickers)
-    de_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'de'), usecols=tickers)
-    eg_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'earnings_growth'), usecols=tickers)
-    cap_df = pd.read_csv('{}{}.csv'.format(fundamentals_directory, 'marketcap'), usecols=tickers)
+    data_frames = {}
 
-    assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in pe1_df.columns], as_of_date=None)
-    sids = pd.Int64Index([asset.sid for asset in assets])
+    for data in data_points:
+        data_frames[data] = helper_functions.make_frame(data, fundamentals_directory, tickers)
 
-    pe1_frame, pe1_frame.index, pe1_frame.columns = pe1_df, date_stamps, sids
-    de_frame, de_frame.index, de_frame.columns = de_df, date_stamps, sids
-    eg_frame, eg_frame.index, eg_frame.columns = eg_df, date_stamps, sids
-    cap_frame, cap_frame.index, cap_frame.columns = cap_df, date_stamps, sids
+    for data_frame in data_frames:
+        assets = bundle_data.asset_finder.lookup_symbols\
+            ([ticker for ticker in data_frames[data_frame].columns], as_of_date=None)
+        sids = pd.Int64Index([asset.sid for asset in assets])
+        break
 
-    return {  # Every column of data needs its own loader
-        MyDataSet.pe1: DataFrameLoader(MyDataSet.pe1, pe1_frame),
-        MyDataSet.de: DataFrameLoader(MyDataSet.de, de_frame),
-        MyDataSet.eg: DataFrameLoader(MyDataSet.eg, eg_frame),
-        MyDataSet.cap: DataFrameLoader(MyDataSet.cap, cap_frame),
-    }
+    class MyDataSet(DataSet):
+        pass
+
+
+    MyDataSet = helper_functions.set_dataset_columns([data_point for data_point in data_points], MyDataSet)
+
+    loaders = {}
+
+    for data_frame in data_frames:
+        data_frames[data_frame].index, data_frames[data_frame].columns = date_stamps, sids
+
+    for attr in data_frames:
+        loaders[getattr(MyDataSet, attr)] = DataFrameLoader(getattr(MyDataSet, attr), data_frames[attr])
+
+    return loaders, MyDataSet
 
 def make_pipeline():
+
+    print(MyDataSet.pe1)
 
     return Pipeline(
         columns={
@@ -164,9 +169,9 @@ if __name__ == "__main__":
         environ=os.environ,
     )
 
-    bundle_data = bundles.load('sharadar-pricing')  # This is a bundle made from Sharadar SEP data
+    bundle = bundles.load('sharadar-pricing')  # This is a bundle made from Sharadar SEP data
 
-    loaders = prepare_data(bundle_data)
+    loaders, MyDataSet = prepare_data(bundle)
 
     run_algorithm(
         bundle='sharadar-pricing',
