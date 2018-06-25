@@ -16,9 +16,10 @@ Setup instructions:
     run: ' brew install readline '
 
     command line:
-    Use pyenv to install python 3.5 ‘ pyenv install 3.5.5 ‘
+    Use pyenv to install python 3.5.5 ‘ pyenv install 3.5.5 ‘
     Run ‘pyenv versions’ to make sure you have the right python installed
-    Run ‘pyenv global 3.5.5’ to make python 3.5.5 your currently running version
+    Navigate to the root directory of where you downloaded this repo, and run:
+    Run ‘pyenv local 3.5.5’ to make it so that version of Python is the version that runs in this directory
     Run ‘ eval "$(pyenv init -)” ‘
 
     Run ' python --version ' to make sure you are running Python 3.5.5
@@ -26,6 +27,7 @@ Setup instructions:
 
     Make sure pip is up to date: ‘ pip install --upgrade pip ‘
     pip install numpy
+    Pip install pandas
     pip install cython
     pip install -U setuptools
 
@@ -42,20 +44,24 @@ Setup instructions:
 
     Zipline should install, and we can now use this environment to do all kinds of fun stuff
 
-3:  Download pricing and fundamental data from Quandl. Put these 2 files in the data_downloads folder.
+3: Run mkdirs.py to create the proper folder structure for data processing
+
+4:  Download pricing and fundamental data from Quandl. Unzip, and put the 2 files in the data_downloads folder.
     Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
     Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
 
 4: Time to process the data!
 
     Run bundle_prep.py to process the pricing data into seperate OHLCV files for each ticker.
-    (This step will take a little while. Should have written it in Go).
-
-    Run reindex.py to finish processing pricing data
+    (This step will take a while. Maybe up to an hour on slow processors).
 
     Run drop_non_arq.py, this file strips away a lot of fluff that we won't use from the fundamental data.
 
     Run fundamentals_prep.py, this file puts the data for each alpha factor into a seperate folder.
+
+    Run earnings_growth.py
+
+    Run reindex_fundamentals.py, this will reindex the fundamentals csvs and backfill empty cells
 
 5: Time to ingest the pricing data as a bundle:
     Find your zipline folder:
@@ -71,10 +77,12 @@ Setup instructions:
 
     Change the first parameter in the register() function to: ' sharadar-pricing '
     Make sure the first parameter of the csvdir_equites() function is ' ['daily'] '
-    Make the second parameter of the csvdir_equites() function the full directory of your pricing folder...
-    For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ '
+    Make the second parameter of the csvdir_equites() function the full directory of your pricing folder... 
+    For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ ' This folder should contain one other folder named ' daily '.
 
-    Ingest the data by running zipline ingest -b 'sharadar-pricing'
+    Make sure you are running Python 3.5.5 with Zipline installed properly, step 1 above ^^^. 
+
+    Ingest the data by running ' zipline ingest -b 'sharadar-pricing' '
 
 6: Test to see if the thing works:
     Run basic_backtest.py, if it works, a CSV file should be written to the backtest_outputs folder. Hooray!
