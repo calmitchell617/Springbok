@@ -1,88 +1,64 @@
-This code is dedicated to using pricing, and fundamental data from Quandl within Zipline.
+It is common to see questions related to using external, fundamental data for backtests within Zipline. I have developed an easy way of implementing data from Sharadar’s SF1 (fundamentals) and SEP (pricing) datasets. These are very popular datasets because of their relative robustness, in relation to their low price. 
 
-Note: Everything that is quoted by single quotemarks... ' like this ' ... is a command to run in the command line.
+Others have written about this topic, such as Jonathan Larkin on Zipline Github issue #911: https://github.com/quantopian/zipline/issues/911 , and Peter Harrington on his AlphaCompiler blog: http://alphacompiler.com/blog/6/ . 
 
-Setup instructions:
+I tried both of these methods, and found that neither of them worked for my particular use case. It is worth noting that my code borrows heavily from Jonathan Larkin’s implementation of dispatching custom loaders when creating a data pipeline, with a special shout out to Scott Sanderson for helping me alter Zipline to make the run_algorithm() function accept dataframe loaders. 
 
-1:  Make sure your environment is Python 3.5, and install the proper dependencies. I used Pyenv to accomplish this goal.
-    Tutorial for setting up Pyenv on macOS:
-    https://medium.com/@pimterry/setting-up-pyenv-on-os-x-with-homebrew-56c7541fd331
+Because this method uses Pandas Data Frames to load all data into the data pipeline (using the DataFrameLoader class https://github.com/quantopian/zipline/blob/master/zipline/pipeline/loaders/frame.py), you can only load data which will fit in your computer’s RAM. My next improvement will be implementing the Blaze loader in order to increase loading speed, and do away with this annoying limitation. 
 
-    Here is the summary of the commands you should run:
+I will now go over all of the files within this repo by explaining what they do, what may break in the future, and how you can change the file to fit your individual needs. If you don’t care about any of that, go to https://github.com/calmitchell617/Springbok and check out the readme. It has succinct setup instructions without any extra prose. 
 
-    If you already have homebrew installed (which you should)
-    run: ' CFLAGS=“-I$(xcrun — show-sdk-path)/usr/include” '
-    run: ' brew install pyenv '
-    run: ' brew install readline '
+The first thing you need to do is set up the proper Python Environment. To summarize, you need to install Python 3.5, numpy, pandas, cython, matplotlib, setuptools, BEFORE you can install Zipline. 
 
-    command line:
-    Use pyenv to install python 3.5.5 ‘ pyenv install 3.5.5 ‘
-    Run ‘pyenv versions’ to make sure you have the right python installed
-    Navigate to the root directory of where you downloaded this repo, and run:
-    Run ‘pyenv local 3.5.5’ to make it so that version of Python is the version that runs in this directory
-    Run ‘ eval "$(pyenv init -)” ‘
+The official Zipline docs recommends using Conda to set up this environment, but it seems that Conda sometimes doesn’t install the very latest version of Zipline. I use pip and Pyenv to set up my environment, here are my step by step instructions for setting up shop on macOS. 
 
-    Run ' python --version ' to make sure you are running Python 3.5.5
-    At this point, we are running Python 3.5.5, using Pyenv. Great!
+(PS: Head over to https://pythonprogramming.net/zipline-local-install-python-programming-for-finance/ if you want setup instructions for Windows or Linux).
 
-    Make sure pip is up to date: ‘ pip install --upgrade pip ‘
-    pip install numpy
-    Pip install pandas
-    pip install cython
-    pip install -U setuptools
+Step 1: Install Python 3.5.5 using Pyenv
 
-2:  We have installed the correct Python version, and Zipline's dependencies.. Now we need to install Zipline in
-    such a way that we can easily modify / build it to our environment.
+Assuming you already have Homebrew, using the command line, navigate to the directory that you downloaded my air repo to, and run:
 
-    I recommend cloning my Zipline fork on Github to a place where you want to keep the version of Zipline that you will
-    modify in the future.
+run: CFLAGS="-I$(xcrun — show-sdk-path)/usr/include"
+run: brew install pyenv
+run: brew install readline
+Install python 3.5.5: pyenv install 3.5.5
+Run: pyenv versions
+Make sure 3.5.5 is listed
+Run: pyenv local 3.5.5 
+Makes it so Python 3.5.5 is associated with this directory
+    Run: eval "$(pyenv init -)”
+ Run: python --version
+ Check to make sure you are running Python 3.5.5 .. If so, great!
 
-    command line:
-    git clone https://github.com/calmitchell617/zipline.git
-    git checkout -b WHATEVER-YOU-WANT-TO-CALL-YOUR-BRANCH
-    pip install ROOT-DIRECTORY-OF-YOUR-GIT-CLONE
+If you get stuck, here is a tutorial for setting up Pyenv on macOS:
+https://medium.com/@pimterry/setting-up-pyenv-on-os-x-with-homebrew-56c7541fd331
 
-    Zipline should install, and we can now use this environment to do all kinds of fun stuff
+Step 2: Install Zipline (and a few other) dependencies using pip
 
-3: Run mkdirs.py to create the proper folder structure for data processing
+Run: pip install --upgrade pip
+Makes sure pip is up to date
+Run: pip install numpy
+Run: pip install pandas
+Run: pip install cython
+Run: pip install -U setuptools
 
-4:  Download pricing and fundamental data from Quandl. Unzip, and put the 2 files in the data_downloads folder.
-    Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
-    Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
+Step 3: Install my modified version of Zipline
 
-4: Time to process the data!
+Navigate to the directory that you want my version of zipline to download to, and run on the command line:
+   
+git clone https://github.com/calmitchell617/zipline.git
+pip install (copy and paste the path of where you installed my zipline repo here)
 
-    Run bundle_prep.py to process the pricing data into seperate OHLCV files for each ticker.
-    (This step will take a while. Maybe up to an hour on slow processors).
+Zipline should now install, and we can now use this environment to do all kinds of fun stuff
 
-    Run drop_non_arq.py, this file strips away a lot of fluff that we won't use from the fundamental data.
+Step 4: Download and process data from Quandl / Sharadar
 
-    Run fundamentals_prep.py, this file puts the data for each alpha factor into a seperate folder.
+Run mkdirs.py to setup the proper folder structure
+Download pricing and fundamental data from Quandl. Unzip, and put these 2 files in the data_downloads folder. 
+Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
+Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
+process_data.py (will take an hour + to process all of the data. Will print “Done!” When it’s done.
+Ingest the data bundle 
 
-    Run earnings_growth.py
 
-    Run reindex_fundamentals.py, this will reindex the fundamentals csvs and backfill empty cells
-
-5: Time to ingest the pricing data as a bundle:
-    Find your zipline folder:
-    /Users/YOUR-USER-NAME/.zipline
-
-    You will have to modify the extension.py folder within that directory
-
-    Change the start_session variable to match the date which your pricing data
-    starts on
-
-    Change the end_session variable to match the date that your pricing data
-    ends on.
-
-    Change the first parameter in the register() function to: ' sharadar-pricing '
-    Make sure the first parameter of the csvdir_equites() function is ' ['daily'] '
-    Make the second parameter of the csvdir_equites() function the full directory of your pricing folder... 
-    For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ ' This folder should contain one other folder named ' daily '.
-
-    Make sure you are running Python 3.5.5 with Zipline installed properly, step 1 above ^^^. 
-
-    Ingest the data by running ' zipline ingest -b 'sharadar-pricing' '
-
-6: Test to see if the thing works:
-    Run basic_backtest.py, if it works, a CSV file should be written to the backtest_outputs folder. Hooray!
+To be continued….
