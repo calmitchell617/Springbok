@@ -1,7 +1,9 @@
 import helper_functions
+import rays_long_short_strategy_helpers
+
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
-from zipline.pipeline.data import USEquityPricing, Column, DataSet, BoundColumn
+from zipline.pipeline.data import USEquityPricing, Column, DataSet
 from zipline.pipeline.loaders.frame import DataFrameLoader
 from zipline.utils.run_algo import load_extensions
 from zipline import run_algorithm
@@ -57,18 +59,15 @@ def prepare_data(bundle_data):
         for point in data_points:
             locals()[point] = Column(dtype=float)
 
-
-    # MyDataSet = helper_functions.set_dataset_columns([data_point for data_point in data_points], MyDataSet)
-
-    loaders = {}
+    data_frame_loaders = {}
 
     for data_frame in data_frames:
         data_frames[data_frame].index, data_frames[data_frame].columns = date_stamps, sids
 
     for attr in data_frames:
-        loaders[getattr(MyDataSet, attr)] = DataFrameLoader(getattr(MyDataSet, attr), data_frames[attr])
+        data_frame_loaders[getattr(MyDataSet, attr)] = DataFrameLoader(getattr(MyDataSet, attr), data_frames[attr])
 
-    return loaders, MyDataSet
+    return data_frame_loaders, MyDataSet
 
 def make_pipeline():
 
@@ -105,9 +104,9 @@ def before_trading_start(context, data):
 
     context.cap_plays = context.output.sort_values(['marketcap'])[-4000:]  # take top 4000 stocks by market cap for liquidity
 
-    context.longs = helper_functions.get_longs(context.cap_plays)
+    context.longs = rays_long_short_strategy_helpers.get_longs(context.cap_plays)
 
-    context.shorts = helper_functions.get_shorts(context.cap_plays)
+    context.shorts = rays_long_short_strategy_helpers.get_shorts(context.cap_plays)
 
     record(open_orders=str(get_open_orders()))
 
@@ -117,35 +116,7 @@ def handle_data(context, data):
     Run every day, at market open.
     """
 
-    longs_to_remove = []
-
-    for asset in context.longs_portfolio:  # search portfolio for positions to close out
-        if asset not in context.longs.index:
-            longs_to_remove.append(asset)
-            order_target(asset, 0)
-
-    for asset in context.longs.index:  # search context.longs for stocks to add to portfolio
-        if asset not in context.longs_portfolio:
-            context.longs_portfolio[asset] = True
-            order_target_percent(asset, .005)
-
-    for key in longs_to_remove:
-        context.longs_portfolio.pop(key)
-
-    shorts_to_remove = []
-
-    for asset in context.shorts_portfolio:  # search portfolio for positions to close out
-        if asset not in context.shorts.index:
-            shorts_to_remove.append(asset)
-            order_target(asset, 0)
-
-    for asset in context.shorts.index:  # search context.shorts for stocks to add to portfolio
-        if asset not in context.shorts_portfolio:
-            context.shorts_portfolio[asset] = True
-            order_target_percent(asset, -0.005)
-
-    for key in shorts_to_remove:
-        context.shorts_portfolio.pop(key)
+    context = rays_long_short_strategy_helpers.portfolio_logic(context)
 
 def analyze(context, perf):
     """

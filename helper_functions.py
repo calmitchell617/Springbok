@@ -73,18 +73,6 @@ def convert_to_date_stamps(dates):
     return datestamps
 
 
-def get_longs(filtered_by_cap):
-    pe1_longs = filtered_by_cap.sort_values(['pe1'])[:1000]  # filter 1000 stocks with lowest pe ratios
-    eg_longs = pe1_longs.sort_values(['earnings_growth'])[-500:]  # filter 500 stocks with highest earning growth
-    return eg_longs.sort_values(['de'])[:100]  # filter top 100 stocks by lowest debt equity ratio
-
-
-def get_shorts(filtered_by_cap):
-    pe1_shorts = filtered_by_cap.sort_values(['pe1'])[-1000:]  # same thing but backwards for shorts
-    eg_shorts = pe1_shorts.sort_values(['earnings_growth'])[:500]
-    return eg_shorts.sort_values(['de'])[-100:]
-
-
 def make_frame(data_name, fundamentals_directory, tickers):
     return pd.read_csv('{}{}.csv'.format(fundamentals_directory, data_name), usecols=tickers)
 
