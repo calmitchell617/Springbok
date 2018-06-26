@@ -25,7 +25,16 @@ matplotlib.use('TkAgg')  # This forces MatPlotLib to use TkAgg as a backend
 import matplotlib.pyplot as plt
 
 def prepare_data(bundle_data):
+    """
+    This function takes a data bundle and matches fundamental data points to the correct asset objects.
+    :param bundle_data: The data bundle that you ingested from SEP
+    :return: A dictionary of loaders to be used within a data pipeline, and a DataSet class with the correct columns
+    """
 
+    """
+    Enter the name of the data points you wish to use in the backtest here. The names need to match the name of the
+    appropriate CSV file found in processed_data/fundamentals
+    """
     data_points = ['pe1', 'de', 'earnings_growth', 'marketcap']
 
     # Specify where our CSV files live
@@ -34,8 +43,11 @@ def prepare_data(bundle_data):
 
     # pricing_assets is an ordered dict that contains the name of every security in the pricing directory
     pricing_assets = helper_functions.get_pricing_securities(pricing_directory)
-    # fundamental_assets is an ordered dict that contains the name of every security in the fundamentals directory
-    # dates is a list of dates that the fundamentals directory is indexed by
+
+    """
+    fundamental_assets is an ordered dict that contains the name of every security in the fundamentals directory
+    dates is a list of dates that the fundamentals directory is indexed by
+    """
     fundamental_assets, dates = helper_functions.get_dates(fundamentals_directory)
 
     # Securities that are in both pricing_assets, and fundamental_assets
@@ -46,25 +58,45 @@ def prepare_data(bundle_data):
     data_frames = {}
 
     for data in data_points:
+        # creates a dataframe for each data point, puts it in the data_frames dict
         data_frames[data] = helper_functions.make_frame(data, fundamentals_directory, tickers)
 
     for data_frame in data_frames:
-        assets = bundle_data.asset_finder.lookup_symbols\
-            ([ticker for ticker in data_frames[data_frame].columns], as_of_date=None)
+        """
+        assets variable becomes a list of Asset objects, sids becomes a list of SID objects corresponding to the correct
+        assets.
+        """
+        assets = bundle_data.asset_finder.lookup_symbols([ticker for ticker in data_frames[data_frame].columns],
+                                                         as_of_date=None)
         sids = pd.Int64Index([asset.sid for asset in assets])
         break
 
 
     class MyDataSet(DataSet):
+        """
+        We need to create an attribute for each needed data point within MyDataSet, before __new__() runs...
+        This is so MyDataSet converts the Column types into BoundColumn types.
+        """
         for point in data_points:
             locals()[point] = Column(dtype=float)
 
+    """
+    We are finally ready to create a dictionary of data frame loaders, with corresponding BoundColumn attributes
+    within our MyDataSet class. 
+    """
     data_frame_loaders = {}
 
     for data_frame in data_frames:
+        """
+        Reindexes the dataframe indexes with date_stamps instead of dates, and replaces the column names (which are
+        currently strings) with SIDS.
+        """
         data_frames[data_frame].index, data_frames[data_frame].columns = date_stamps, sids
 
     for attr in data_frames:
+        """
+        Filles data_frame_loaders with key value pairs of: MyDataSet.attribute_name: DataFrameLoader(attribute_name
+        """
         data_frame_loaders[getattr(MyDataSet, attr)] = DataFrameLoader(getattr(MyDataSet, attr), data_frames[attr])
 
     return data_frame_loaders, MyDataSet
@@ -87,6 +119,11 @@ def make_pipeline():
     )
 
 def initialize(context):
+    """
+    Function runs once, at the start of the backtest. You must attach_pipeline() here.
+    :param context: A common namespace to keep variables in
+    :return:
+    """
 
     context.longs_portfolio = {}
     context.shorts_portfolio = {}
@@ -98,7 +135,10 @@ def initialize(context):
 
 def before_trading_start(context, data): 
     """
-    function is run every day before market opens
+    Runs once a day, before trading start
+    :param context: The common namespace
+    :param data:
+    :return:
     """
     context.output = pipeline_output('data_pipe')
 
@@ -113,14 +153,20 @@ def before_trading_start(context, data):
 
 def handle_data(context, data):
     """
-    Run every day, at market open.
+    Runs every day, at market open
+    :param context: Common namepsace
+    :param data:
+    :return:
     """
 
     context = rays_long_short_strategy_helpers.portfolio_logic(context)
 
 def analyze(context, perf):
     """
-    Helper function that runs once the backtest is finished
+    Helper function that runs at the end of backtest for analysis
+    :param context: Common namespace
+    :param perf: The data which shows how the backtest performed
+    :return:
     """
     perf.to_csv('backtest_outputs/backtest_on_{}.csv'.format(str(dt.datetime.now())))
 

@@ -19,6 +19,11 @@ I use pip and Pyenv to set up my environment, here are my step by step instructi
 
 **PS these instructions are for macOS. I will try to accomodate Windows and Linux users, but make no guarantees.**
 
+#### Step 0: Clone this repo into the directory of your choice
+```
+git clone https://github.com/calmitchell617/Springbok.git
+```
+
 #### Step 1: Install Python 3.5.5 using Pyenv
 
 I followed [this tutorial](https://medium.com/@pimterry/setting-up-pyenv-on-os-x-with-homebrew-56c7541fd331) to set up Python 3.5.5 using Pyenv. Assuming you already have Homebrew installed, here are the esssential steps:
