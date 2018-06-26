@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,7 +50,11 @@
       </file>
       <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -129,6 +133,7 @@
         <option value="$PROJECT_DIR$/process_data.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/readme.txt" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
@@ -476,7 +481,21 @@
       <option name="project" value="LOCAL" />
       <updated>1530022045311</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Finished first draft of readme.md">
+      <created>1530023401589</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1530023401589</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Finished first draft of readme.md">
+      <created>1530023486181</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1530023486181</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -490,6 +509,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="22" width="1440" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11205074" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
@@ -560,7 +580,8 @@
     <MESSAGE value="Combined bundle_prep, reindex, drop_non_arq, fundamentals_prep, earnings_growth, and reindex_fundamentals into process_data.py" />
     <MESSAGE value="__init__.py had some trash to take out" />
     <MESSAGE value="In the process of writing a new readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="In the process of writing a new readme" />
+    <MESSAGE value="Finished first draft of readme.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished first draft of readme.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -716,7 +737,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

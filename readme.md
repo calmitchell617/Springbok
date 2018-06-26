@@ -32,7 +32,7 @@ pyenv versions
 ```
 Look to make sure Python 3.5.5 is listed
 ```
-Run: pyenv local 3.5.5
+pyenv local 3.5.5
 ```
 Makes it so Python 3.5.5 is associated with this directory
 ```
