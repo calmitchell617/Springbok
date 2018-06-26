@@ -33,9 +33,6 @@ pyenv versions
 Look to make sure Python 3.5.5 is listed
 ```
 pyenv local 3.5.5
-```
-Makes it so Python 3.5.5 is associated with this directory
-```
 eval "$(pyenv init -)”
 python --version
 ```
