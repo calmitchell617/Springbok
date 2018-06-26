@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="extension.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="extension.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.zipline/extension.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -46,6 +46,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -99,7 +104,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/zipline-setup.py" />
-        <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/fundamentals_prep_2.py" />
         <option value="$PROJECT_DIR$/dataframe_exps.py" />
         <option value="$USER_HOME$/.pyenv/versions/3.5.5/lib/python3.5/site-packages/zipline/data/us_equity_pricing.py" />
@@ -124,6 +128,7 @@
         <option value="$USER_HOME$/.zipline/extension.py" />
         <option value="$PROJECT_DIR$/process_data.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/readme.txt" />
       </list>
     </option>
   </component>
@@ -464,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529967979171</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="In the process of writing a new readme">
+      <created>1530022045311</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1530022045311</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -477,13 +489,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="878" extended-state="0" />
+    <frame x="1" y="22" width="1440" height="878" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11205074" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11205074" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.31636363" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.3559539" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.3559539" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
@@ -556,8 +568,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
-    <entry file="file://$PROJECT_DIR$/../Springbok/zipline/put_fundamental_data_in_folder.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep_2.py" />
     <entry file="file://$PROJECT_DIR$/dataframe_exps.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
@@ -656,13 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/earnings_growth.py" />
     <entry file="file://$PROJECT_DIR$/reindex_fundamentals.py" />
     <entry file="file://$PROJECT_DIR$/reindex.py" />
@@ -692,6 +695,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/blog post.pages">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="85" column="93" lean-forward="true" selection-start-line="85" selection-start-column="93" selection-end-line="85" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.zipline/extension.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -701,6 +714,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
