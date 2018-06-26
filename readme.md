@@ -73,14 +73,12 @@ Run process_data.py **will take an hour + to process all of the data.** Will pri
 
 We need to ingest all pricing data into what’s known as a data bundle.
 To do this, we will take our CSV files, which have been processed into the correct OHLCV format, and run the “zipline ingest” command from the command line.
-To get successfully run this command, we will have to make a few changes to Zipline itself, however.
+To successfully run this command, we will have to make a few changes to Zipline itself, however.
 
 The .zipline file folder is hidden by default, so you need to alter your computer to reveal hidden files and directories.
 **In macOS Sierra and later, this is quite easy. While in Finder, press “Command + Shift + . “, and hidden files and folders will be revealed.**
 
-For Windows, Google “Windows reveal hidden files” and your Windows version.
-
-If you’re running linux, you probably already know how to do it.
+For Windows or Linux, Google search “(your OS here) reveal hidden files” and your OS version. There will definitely be a tutorial to help you.
 
 Now find your .zipline folder, which is under your user directory.
 For example, on Mac, this is under MacintoshHD -> Users -> the username you are currently using.
@@ -89,21 +87,19 @@ Open “extension.py” to modify it.
 
 Change the start_session variable to match the date which your pricing data starts on
 
-Change the end_session variable to match the date that your pricing dataends on.
+Change the end_session variable to match the date that your pricing data ends on.
 
-Change the first parameter in the register() function to: ' sharadar-pricing '
+Change the first parameter in the register() function to: sharadar-pricing
 
-Make sure the first parameter of the csvdir_equites() function is ' ['daily'] '
+Make sure the first parameter of the csvdir_equites() function is: ['daily']
 
 Make the second parameter of the csvdir_equites() function the full directory of your pricing folder...
 
 For example, my directory is ' /Users/calmitchell/s/springbok-shared/processed_data/pricing/ '
 
-This folder should contain one other folder named ' daily '.
+This folder should contain one other folder named: daily
 
-Make sure you are running Python 3.5.5 with Zipline installed properly, step 1 above ^^^.
-
-On the command line, run:
+Make sure you are running Python 3.5.5 with Zipline installed properly, step 1 above, then run:
 ```
 zipline ingest -b 'sharadar-pricing'
 ```
