@@ -69,7 +69,8 @@ Zipline should now install, and we can now use this environment to do all kinds 
 Run mkdirs.py to setup the proper folder structure
 
 Download pricing and fundamental data from Quandl. 
-Unzip, and put these 2 files in the data_downloads folder. **Do not put the zip files in the data_downloads folder.**
+Unzip, and put these 2 files in the data_downloads folder. 
+**Do not put the zip files in the data_downloads folder.**
 Pricing:        https://www.quandl.com/databases/SEP/documentation/batch-download
 Fundamentals:   https://www.quandl.com/databases/SF1/documentation/batch-download
 
