@@ -29,7 +29,7 @@ git clone https://github.com/calmitchell617/Springbok.git
 I followed [this tutorial](https://medium.com/@pimterry/setting-up-pyenv-on-os-x-with-homebrew-56c7541fd331) to set up Python 3.5.5 using Pyenv. Assuming you already have Homebrew installed, here are the esssential steps:
 
 ```
-CFLAGS="-I$(xcrun — show-sdk-path)/usr/include"
+CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
 brew install pyenv
 brew install readline
 pyenv install 3.5.5
