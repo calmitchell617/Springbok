@@ -35,6 +35,10 @@ brew install readline
 pyenv install 3.5.5
 pyenv versions
 ```
+
+The command that starts with CFLAGS is a known issue to the Pyenv folks, and they have created a page for common build problems.
+If that command fails, or any of the subsequent commands fail, check out [this page](https://github.com/pyenv/pyenv/wiki/Common-build-problems) to see if your problem can be solved there. 
+
 Look to make sure Python 3.5.5 is listed
 ```
 pyenv local 3.5.5
