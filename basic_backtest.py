@@ -188,7 +188,7 @@ if __name__ == "__main__":
 
     bundle = bundles.load('sharadar-pricing')  # This is a bundle made from Sharadar SEP data
 
-    loaders, MyDataSet = prepare_data(bundle)
+    data_frame_loaders, MyDataSet = prepare_data(bundle)
 
     print('Made it to run_algorithm')
 
@@ -201,5 +201,5 @@ if __name__ == "__main__":
         analyze=analyze,
         capital_base=100000,
         handle_data=handle_data,
-        loaders=loaders
+        data_frame_loaders=data_frame_loaders
     )

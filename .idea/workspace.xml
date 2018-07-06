@@ -13,53 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1377">
-                <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mkdirs.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Springbok/mkdirs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="process_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Springbok/process_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="extension.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.zipline/extension.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/basic_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
+            <state relative-caret-position="467">
+              <caret line="194" column="18" selection-start-line="194" selection-start-column="18" selection-end-line="194" selection-end-column="18" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -142,8 +100,8 @@
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/basic_backtest.py" />
-        <option value="$USER_HOME$/.zipline/extension.py" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$USER_HOME$/.zipline/extension.py" />
       </list>
     </option>
   </component>
@@ -154,9 +112,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="182" />
     <option name="y" value="22" />
-    <option name="width" value="1002" />
+    <option name="width" value="1204" />
     <option name="height" value="878" />
   </component>
   <component name="ProjectView">
@@ -164,18 +121,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="springbok-shared" type="b2602c69:ProjectViewProjectNode" />
-              <item name="springbok-shared" type="462c0819:PsiDirectoryNode" />
+              <item name="Springbok" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,7 +140,7 @@
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -232,11 +189,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Springbok" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Springbok/mkdirs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mkdirs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -268,11 +225,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Springbok" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Springbok/process_data.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/process_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -306,10 +263,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.basic_backtest2" />
-        <item itemvalue="Python.process_data (1)" />
-        <item itemvalue="Python.mkdirs (1)" />
         <item itemvalue="Python.process_data" />
         <item itemvalue="Python.mkdirs" />
+        <item itemvalue="Python.process_data (1)" />
+        <item itemvalue="Python.mkdirs (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -568,12 +525,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="22" width="1002" height="878" extended-state="0" />
+    <frame x="0" y="22" width="1204" height="878" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.12036336" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2561285" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.33674777" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33674777" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33418694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -663,7 +620,7 @@
     <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep_2.py" />
-    <entry file="file://$PROJECT_DIR$/../Springbok/zipline/put_fundamental_data_in_folder.py" />
+    <entry file="file://$PROJECT_DIR$/zipline/put_fundamental_data_in_folder.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/dataframe_exps.py" />
     <entry file="file://$PROJECT_DIR$/../zipline/zipline/data/_adjustments.pyx" />
@@ -691,7 +648,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Springbok/zipline/working-small-universe-full-data.py" />
+    <entry file="file://$PROJECT_DIR$/zipline/working-small-universe-full-data.py" />
     <entry file="file://$USER_HOME$/.pyenv/versions/3.5.5/lib/python3.5/site-packages/zipline/data/data_portal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -749,9 +706,7 @@
     <entry file="file://$PROJECT_DIR$/reindex.py" />
     <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
-    <entry file="file://$PROJECT_DIR$/blog post.pages">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/blog post.pages" />
     <entry file="file://$PROJECT_DIR$/readme.txt" />
     <entry file="file://$PROJECT_DIR$/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -770,23 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Springbok/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.zipline/extension.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../zipline/zipline/utils/run_algo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2289">
@@ -802,27 +740,41 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1377">
-            <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+          <first_editor relative-caret-position="17">
+            <caret line="81" selection-start-line="81" selection-end-line="81" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+    <entry file="file://$USER_HOME$/.zipline/extension.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="54" lean-forward="true" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Springbok/mkdirs.py">
+    <entry file="file://$PROJECT_DIR$/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        <state relative-caret-position="440">
+          <caret line="298" column="9" lean-forward="true" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mkdirs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="194" column="18" selection-start-line="194" selection-start-column="18" selection-end-line="194" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
