@@ -1,6 +1,6 @@
 # Using Fundamental Data For Backtests Within Zipline
 
-[**Click here to watch the video tutorial**](https://www.youtube.com/watch?v=4fuLQwhOp2Y&t=22s)
+[**Click here to watch the video tutorial**](https://www.youtube.com/watch?v=4fuLQwhOp2Y)
 
 It is common to see questions related to using external, fundamental data for backtests within Zipline.
 I have developed an easy way of implementing data from Sharadar’s SF1 (fundamentals) and SEP (pricing) datasets.
