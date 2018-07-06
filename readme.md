@@ -57,6 +57,7 @@ pip install numpy
 pip install pandas
 pip install cython
 pip install -U setuptools
+pip install matplotlib
 ```
 
 #### Step 3: Install my modified version of Zipline
