@@ -42,7 +42,7 @@ If that command fails, or any of the subsequent commands fail, check out [this p
 Look to make sure Python 3.5.5 is listed
 ```
 pyenv local 3.5.5
-eval "$(pyenv init -)”
+eval "$(pyenv init -)"
 python --version
 ```
 Check to make sure you are running Python 3.5.5 .. If so, great!
