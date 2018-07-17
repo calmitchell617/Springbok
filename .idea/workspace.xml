@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/backtest_strategies/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backtest_strategies/momentum_crashes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic_backtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/helper_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rays_long_short_strategy_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,17 +16,35 @@
       <file leaf-file-name="momentum_crashes_backtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="204">
+              <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rays_long_short_strategy.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rays_long_short_strategy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
+            <state relative-caret-position="167">
+              <caret line="49" column="17" lean-forward="true" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -137,6 +149,7 @@
         <option value="$PROJECT_DIR$/backtest_strategies/helper_functions.py" />
         <option value="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" />
         <option value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -165,23 +178,6 @@
               <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
               <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
-              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
-              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
-              <item name="momentum_crashes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
-              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
-              <item name="rays_long_short_strategy" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -196,16 +192,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy" />
+      <recent name="$PROJECT_DIR$/backtest_strategies" />
+      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backtest_strategies" />
       <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes/rays_long_short_strategy" />
       <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes/aapl_backtest" />
-      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy" />
-      <recent name="$PROJECT_DIR$/backtest_strategies" />
       <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -588,46 +584,56 @@
     <frame x="57" y="22" width="1382" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16899338" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16899338" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33674777" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.33674777" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33418694" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33418694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3956466" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33674777" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16899338" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33418694" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3956466" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.1430585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33790523" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41396508" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39650872" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33790523" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,8 +673,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
@@ -851,18 +855,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        <state relative-caret-position="204">
+          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
+        <state relative-caret-position="167">
+          <caret line="49" column="17" lean-forward="true" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>

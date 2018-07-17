@@ -1,7 +1,7 @@
 # ignoring csv files
 *.csv
 *.pages
-
+**/__pycache__
 .python-version
 
 settings.json
