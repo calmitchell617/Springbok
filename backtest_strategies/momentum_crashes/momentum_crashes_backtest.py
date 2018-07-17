@@ -1,18 +1,18 @@
-import helper_functions
-import rays_long_short_strategy_helpers
+from backtest_strategies import helper_functions as helper_functions
+import backtest_strategies.momentum_crashes.momentum_strategy_helpers as momentum_strategy_helpers
 
 from zipline.data import bundles
 from zipline.pipeline import Pipeline
-from zipline.pipeline.data import USEquityPricing, Column, DataSet
+from zipline.pipeline.data import Column, DataSet
+from zipline.pipeline.factors import Returns
 from zipline.pipeline.loaders.frame import DataFrameLoader
 from zipline.utils.run_algo import load_extensions
 from zipline import run_algorithm
 from zipline.api import (
     attach_pipeline,
     pipeline_output,
-    order_target,
-    order_target_percent,
-    get_open_orders,
+    symbol,
+    set_max_leverage,
     record
 )
 
@@ -23,6 +23,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')  # This forces MatPlotLib to use TkAgg as a backend
 import matplotlib.pyplot as plt
+
 
 def prepare_data(bundle_data):
     """
@@ -35,7 +36,7 @@ def prepare_data(bundle_data):
     Enter the name of the data points you wish to use in the backtest here. The names need to match the name of the
     appropriate CSV file found in processed_data/fundamentals
     """
-    data_points = ['pe1', 'de', 'earnings_growth', 'marketcap']
+    data_points = ['marketcap']
 
     # Specify where our CSV files live
     fundamentals_directory = 'processed_data/fundamentals/'
@@ -95,7 +96,7 @@ def prepare_data(bundle_data):
 
     for attr in data_frames:
         """
-        Filles data_frame_loaders with key value pairs of: MyDataSet.attribute_name: DataFrameLoader(attribute_name
+        Fills data_frame_loaders with key value pairs of: MyDataSet.attribute_name: DataFrameLoader(attribute_name
         """
         data_frame_loaders[getattr(MyDataSet, attr)] = DataFrameLoader(getattr(MyDataSet, attr), data_frames[attr])
 
@@ -103,19 +104,20 @@ def prepare_data(bundle_data):
 
 def make_pipeline():
 
+    yearly_returns = Returns(window_length=252)
+
+    monthly_returns = Returns(window_length=21)
+
+    lagged_returns = yearly_returns - monthly_returns
+
     return Pipeline(
         columns={
-            'price': USEquityPricing.close.latest,
-            'pe1': MyDataSet.pe1.latest,
-            'de': MyDataSet.de.latest,
-            'earnings_growth': MyDataSet.earnings_growth.latest,
+            'lagged_returns': lagged_returns,
             'marketcap': MyDataSet.marketcap.latest,
         },
-        screen=USEquityPricing.close.latest.notnull() &
-               MyDataSet.de.latest.notnull() &
-               MyDataSet.pe1.latest.notnull() &
-               MyDataSet.earnings_growth.latest.notnull() &
-               MyDataSet.marketcap.latest.notnull()
+        screen=lagged_returns.notnull() &
+               MyDataSet.marketcap.latest.notnull() &
+               MyDataSet.marketcap.latest.top(500)
     )
 
 def initialize(context):
@@ -127,13 +129,14 @@ def initialize(context):
 
     context.longs_portfolio = {}
     context.shorts_portfolio = {}
+    set_max_leverage(1)
 
     attach_pipeline(
         make_pipeline(),
         'data_pipe'
     )
 
-def before_trading_start(context, data): 
+def before_trading_start(context, data):
     """
     Runs once a day, before trading start
     :param context: The common namespace
@@ -142,24 +145,37 @@ def before_trading_start(context, data):
     """
     context.output = pipeline_output('data_pipe')
 
-    context.cap_plays = context.output.sort_values(['marketcap'])[-4000:]  # take top 4000 stocks by market cap for liquidity
+    market_type(context, data)
 
-    context.longs = rays_long_short_strategy_helpers.get_longs(context.cap_plays)
+    context.longs = momentum_strategy_helpers.get_longs(context)
 
-    context.shorts = rays_long_short_strategy_helpers.get_shorts(context.cap_plays)
+    context.shorts = momentum_strategy_helpers.get_shorts(context)
 
-    record(open_orders=str(get_open_orders()))
+    record(market_type=str(context.market_type))
 
+
+def market_type(context, data):
+    """
+    Attempts to quantify if we are in a bull, or bear market, based on whether SPY is higher than it was a year ago.
+    """
+
+    history = data.history(symbol('SPY'), 'close', 252, '1d')
+
+    if history[251] - history[0] >= 0:
+        context.market_type = 'bull'
+
+    else:
+        context.market_type = 'bear'
 
 def handle_data(context, data):
     """
     Runs every day, at market open
-    :param context: Common namepsace
+    :param context: Common namespace
     :param data:
     :return:
     """
 
-    context = rays_long_short_strategy_helpers.portfolio_logic(context)
+    context = momentum_strategy_helpers.portfolio_logic(context)
 
 def analyze(context, perf):
     """
@@ -195,11 +211,11 @@ if __name__ == "__main__":
     run_algorithm(
         bundle='sharadar-pricing',
         before_trading_start=before_trading_start,
-        start=pd.Timestamp('2018-04-01', tz='utc'),
+        start=pd.Timestamp('2018-01-02', tz='utc'),
         end=pd.Timestamp('2018-04-20', tz='utc'),
         initialize=initialize,
         analyze=analyze,
-        capital_base=100000,
+        capital_base=1000000,
         handle_data=handle_data,
         data_frame_loaders=data_frame_loaders
     )

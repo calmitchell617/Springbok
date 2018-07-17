@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/backtest_strategies/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtest_strategies/momentum_crashes/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic_backtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/helper_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rays_long_short_strategy_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy_helpers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,13 +19,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="basic_backtest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+      <file leaf-file-name="momentum_crashes_backtest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="194" column="18" selection-start-line="194" selection-start-column="18" selection-end-line="194" selection-end-column="18" />
+            <state relative-caret-position="357">
+              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rays_long_short_strategy.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#68#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helper_functions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backtest_strategies/helper_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,10 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NRTH</find>
-      <find>OGEN</find>
-      <find>context</find>
-      <find>held onto</find>
       <find>aapl</find>
       <find>Pe1</find>
       <find>Rev</find>
@@ -66,6 +89,10 @@
       <find>directory =</find>
       <find>all_</find>
       <find>order_target</find>
+      <find>longs</find>
+      <find>winners</find>
+      <find>losers</find>
+      <find>record</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -102,6 +129,14 @@
         <option value="$PROJECT_DIR$/basic_backtest.py" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$USER_HOME$/.zipline/extension.py" />
+        <option value="$PROJECT_DIR$/aapl_backtest.py" />
+        <option value="$PROJECT_DIR$/momentum_crashes_backtest.py" />
+        <option value="$PROJECT_DIR$/momentum_strategy_helpers.py" />
+        <option value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/__init__.py" />
+        <option value="$PROJECT_DIR$/backtest_strategies/aapl_backtest/aapl_backtest.py" />
+        <option value="$PROJECT_DIR$/backtest_strategies/helper_functions.py" />
+        <option value="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" />
+        <option value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py" />
       </list>
     </option>
   </component>
@@ -112,8 +147,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="57" />
     <option name="y" value="22" />
-    <option name="width" value="1204" />
+    <option name="width" value="1382" />
     <option name="height" value="878" />
   </component>
   <component name="ProjectView">
@@ -121,18 +157,35 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Springbok" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Springbok" type="462c0819:PsiDirectoryNode" />
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
+              <item name="momentum_crashes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
+              <item name="rays_long_short_strategy" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,9 +197,16 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backtest_strategies" />
+      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes/rays_long_short_strategy" />
+      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes/aapl_backtest" />
+      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy" />
+      <recent name="$PROJECT_DIR$/backtest_strategies" />
+      <recent name="$PROJECT_DIR$/backtest_strategies/momentum_crashes" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -162,8 +222,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.basic_backtest2">
-    <configuration name="basic_backtest2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.momentum_crashes_backtest">
+    <configuration name="aapl_backtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -175,13 +235,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic_backtest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/aapl_backtest/aapl_backtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="mkdirs (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="helper_functions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -189,17 +249,17 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backtest_strategies" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mkdirs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backtest_strategies/helper_functions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="mkdirs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="momentum_crashes_backtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -211,31 +271,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mkdirs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="process_data (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="springbok-shared" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/process_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="process_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="momentum_strategy_helpers" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="springbok-shared" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -247,26 +289,44 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/process_data.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_strategy_helpers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="rays_long_short_strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="springbok-shared" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
-      <item itemvalue="Python.basic_backtest2" />
-      <item itemvalue="Python.mkdirs" />
-      <item itemvalue="Python.process_data" />
-      <item itemvalue="Python.mkdirs (1)" />
-      <item itemvalue="Python.process_data (1)" />
+      <item itemvalue="Python.momentum_crashes_backtest" />
+      <item itemvalue="Python.momentum_strategy_helpers" />
+      <item itemvalue="Python.aapl_backtest" />
+      <item itemvalue="Python.rays_long_short_strategy" />
+      <item itemvalue="Python.helper_functions" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.basic_backtest2" />
-        <item itemvalue="Python.process_data" />
-        <item itemvalue="Python.mkdirs" />
-        <item itemvalue="Python.process_data (1)" />
-        <item itemvalue="Python.mkdirs (1)" />
+        <item itemvalue="Python.momentum_crashes_backtest" />
+        <item itemvalue="Python.rays_long_short_strategy" />
+        <item itemvalue="Python.helper_functions" />
+        <item itemvalue="Python.momentum_strategy_helpers" />
+        <item itemvalue="Python.aapl_backtest" />
       </list>
     </recent_temporary>
   </component>
@@ -525,18 +585,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1204" height="878" extended-state="0" />
+    <frame x="57" y="22" width="1382" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2561285" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16899338" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.33674777" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33418694" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33418694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39650872" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3956466" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -606,12 +667,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
-    <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
-    <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
-    <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
-    <entry file="file://$PROJECT_DIR$/readme.txt" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/fundamentals_prep.py" />
     <entry file="file://$PROJECT_DIR$/bundle_prep.py" />
@@ -656,7 +711,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-623">
           <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
@@ -680,24 +735,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="37" column="55" lean-forward="true" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rays_long_short_strategy_helpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helper_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="72" column="21" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -714,9 +755,6 @@
           <caret line="56" column="60" lean-forward="true" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/mkdirs.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -747,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.zipline/extension.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -768,12 +799,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic_backtest.py">
+    <entry file="file://$USER_HOME$/.zipline/extension.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="194" column="18" selection-start-line="194" selection-start-column="18" selection-end-line="194" selection-end-column="18" />
+        <state relative-caret-position="221">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/aapl_backtest/aapl_backtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_strategy_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/helper_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
