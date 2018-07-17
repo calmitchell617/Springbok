@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/aapl_backtest/aapl_backtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/aapl_backtest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/helper_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/utilities/helper_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/momentum_crashes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/utilities/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_crashes_backtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/momentum_crashes_backtest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/momentum_crashes/momentum_strategy_helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtest_strategies/rays_long_short_strategy/rays_long_short_strategy_helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="0b24b800-3530-4665-a668-9a0681f305cf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +14,8 @@
       <file leaf-file-name="momentum_crashes_backtest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes_backtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="186" column="17" lean-forward="true" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="20" />
+            <state relative-caret-position="258">
+              <caret line="189" column="30" lean-forward="true" selection-start-line="189" selection-start-column="30" selection-end-line="189" selection-end-column="30" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -179,6 +168,20 @@
               <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
               <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
               <item name="utilities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
+              <item name="utilities" type="462c0819:PsiDirectoryNode" />
+              <item name="momentum_crashes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Springbok-filled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Springbok-filled" type="462c0819:PsiDirectoryNode" />
+              <item name="backtest_strategies" type="462c0819:PsiDirectoryNode" />
+              <item name="utilities" type="462c0819:PsiDirectoryNode" />
+              <item name="rays_long_short_strategy" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -586,7 +589,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="22" width="1382" height="878" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23218222" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298153" />
@@ -927,8 +929,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backtest_strategies/momentum_crashes_backtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="186" column="17" lean-forward="true" selection-start-line="186" selection-start-column="17" selection-end-line="186" selection-end-column="20" />
+        <state relative-caret-position="258">
+          <caret line="189" column="30" lean-forward="true" selection-start-line="189" selection-start-column="30" selection-end-line="189" selection-end-column="30" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>
