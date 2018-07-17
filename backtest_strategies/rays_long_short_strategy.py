@@ -1,5 +1,5 @@
-from backtest_strategies import helper_functions as helper_functions
-from backtest_strategies.rays_long_short_strategy \
+from backtest_strategies.utilities import helper_functions as helper_functions
+from backtest_strategies.utilities.rays_long_short_strategy \
     import rays_long_short_strategy_helpers as rays_long_short_strategy_helpers
 
 

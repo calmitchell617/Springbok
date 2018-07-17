@@ -31,8 +31,6 @@ def get_dates(fundamentals_directory):
     return_dict = OrderedDict()
     for root, dirs, files in os.walk(fundamentals_directory):
         for file in files:
-            print(file)
-        for file in files:
             if file.endswith('.csv'):
                 fundamental_tickers_df = pd.read_csv('{}{}'.format(fundamentals_directory, file), index_col=0)
 
