@@ -1,6 +1,5 @@
-from backtest_strategies.utilities import helper_functions as helper_functions
-from backtest_strategies.utilities.rays_long_short_strategy \
-    import rays_long_short_strategy_helpers as rays_long_short_strategy_helpers
+from utilities import helper_functions
+from utilities.rays_long_short_strategy import rays_long_short_strategy_helpers
 
 
 from zipline.data import bundles
@@ -39,8 +38,8 @@ def prepare_data(bundle_data):
     data_points = ['pe1', 'de', 'earnings_growth', 'marketcap']
 
     # Specify where our CSV files live
-    fundamentals_directory = 'processed_data/fundamentals/'
-    pricing_directory = 'processed_data/pricing/daily/'
+    fundamentals_directory = '../processed_data/fundamentals/'
+    pricing_directory = '../processed_data/pricing/daily/'
 
     # pricing_assets is an ordered dict that contains the name of every security in the pricing directory
     pricing_assets = helper_functions.get_pricing_securities(pricing_directory)
@@ -169,7 +168,7 @@ def analyze(context, perf):
     :param perf: The data which shows how the backtest performed
     :return:
     """
-    perf.to_csv('backtest_outputs/backtest_on_{}.csv'.format(str(dt.datetime.now())))
+    perf.to_csv('../backtest_outputs/backtest_on_{}.csv'.format(str(dt.datetime.now())))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(211)
