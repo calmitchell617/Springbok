@@ -90,6 +90,8 @@ To successfully run this command, we will have to make a few changes to Zipline 
 The .zipline file folder is hidden by default, so you need to alter your computer to reveal hidden files and directories.
 **In macOS Sierra and later, this is quite easy. While in Finder, press “Command + Shift + . “, and hidden files and folders will be revealed.**
 
+Important: If you don't see the .zipline directory, I put an empty version of it in the repository. Copy and paste it into your home directory. 
+
 For Windows or Linux, Google search “(your OS here) reveal hidden files” and your OS version. There will definitely be a tutorial to help you.
 
 Now find your .zipline folder, which is under your user directory.
