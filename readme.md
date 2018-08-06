@@ -127,4 +127,8 @@ Run basic_backtest.py to ensure everything is working
 At this point, you have ingested pricing data, processed fundamental data into a known directory, and run a backtest using the data.
 Check out the comments and structure of basic_backtest.py to further your understanding of how to work with Zipline.
 
+#### Optional step 7:
+
+Download historical "SPY" pricing from yahoo finance. Delete adjust close column, and change date column to match the pricing files in processed_data/daily. Reingest the files.
+
 ### Happy alpha hunting! 
