@@ -1,4 +1,4 @@
-from backtest_strategies import helper_functions as helper_functions
+from utilities import helper_functions as helper_functions
 
 from zipline.data import bundles
 from zipline.pipeline import Pipeline, CustomFactor
