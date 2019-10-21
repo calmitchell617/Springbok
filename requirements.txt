@@ -46,6 +46,6 @@ SQLAlchemy==1.2.9
 statsmodels==0.9.0
 tables==3.4.4
 toolz==0.9.0
-urllib3==1.23
+urllib3==1.24.2
 wrapt==1.10.11
 zipline==1.2.0+67.gebcf7474
